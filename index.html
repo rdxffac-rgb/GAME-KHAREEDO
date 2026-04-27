@@ -1,1 +1,107 @@
-hey 
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDX FF STORE - Official Top-up Center</title>
+    </head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <img src="https://logodownload.org/wp-content/uploads/2019/06/free-fire-logo-1.png" alt="Free Fire Logo" class="ff-logo">
+            <div class="brand-title">RDX FF STORE</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Fastest Diamond Top-up</h1>
+        <p>Direct In-Game Delivery within 5 Minutes</p>
+    </section>
+
+    <main class="topup-container">
+        </main>
+
+    <section class="reviews-section">
+        <h2>Customer Feedback</h2>
+        
+        <div class="user-rating-box">
+            <p>Apna Review Dein:</p>
+            <div class="stars" id="star-input">
+                <span onclick="submitReview(1)">★</span>
+                <span onclick="submitReview(2)">★</span>
+                <span onclick="submitReview(3)">★</span>
+                <span onclick="submitReview(4)">★</span>
+                <span onclick="submitReview(5)">★</span>
+            </div>
+            <p id="thanks-msg" style="display:none; color: #00ff00;">Thanks for your review!</p>
+        </div>
+
+        <div id="review-list">
+            <div class="review-card visible">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <strong>Rahul Sharma</strong>
+                <p>Bhai bilkul genuine hai, mene 1000 diamonds liye aur turant mil gaye!</p>
+            </div>
+            <div class="review-card visible">
+                <div class="stars">⭐⭐⭐⭐</div>
+                <strong>Amit FF Gamer</strong>
+                <p>Mene prime level 8 kar liya hai isi site se topup karke. Best prices.</p>
+            </div>
+
+            <div class="review-card hidden">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <strong>Deepak YT</strong>
+                <p>Mene apni M1014 max kar li hai, thanks RDX STORE!</p>
+            </div>
+            <div class="review-card hidden">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <strong>Sameer Khan</strong>
+                <p>Best site for topup, kafi time se kar rha hu koi issue nahi aaya.</p>
+            </div>
+            </div>
+
+        <button id="see-more-btn" onclick="showMore()">See More Reviews</button>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>RDX FF STORE</h3>
+                <p>Address: Sector 15, Digital Plaza, Jaipur, Rajasthan, India</p>
+                <p>GSTIN: 08AAAAA0000A1Z5 (Verified)</p>
+                <p>Email: support@rdxffstore.in</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a> | 
+                <a href="#">Terms & Conditions</a> | 
+                <a href="#">Garena Free Fire Policy</a>
+            </div>
+            <div class="disclaimer">
+                <p>© 2026 RDX FF STORE. All rights reserved. We are an independent top-up service provider.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let reviewsShown = 2;
+        function showMore() {
+            const hiddenReviews = document.querySelectorAll('.review-card.hidden');
+            for(let i = 0; i < 4 && i < hiddenReviews.length; i++) {
+                hiddenReviews[i].classList.remove('hidden');
+                hiddenReviews[i].classList.add('visible');
+            }
+            if(document.querySelectorAll('.review-card.hidden').length === 0) {
+                document.getElementById('see-more-btn').style.display = 'none';
+            }
+        }
+
+        function submitReview(rating) {
+            document.getElementById('thanks-msg').style.display = 'block';
+            document.getElementById('star-input').style.pointerEvents = 'none';
+            document.getElementById('star-input').style.opacity = '0.5';
+        }
+    </script>
+
+</body>
+</html>
