@@ -101,6 +101,18 @@
             position: relative;
             box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
         }
+
+        /* Number Input Styling */
+        .input-group {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            transition: border-color 0.3s;
+        }
+        .input-group:focus-within { border-color: #6366f1; }
     </style>
 </head>
 <body class="bg-gray-50 pb-10">
@@ -113,6 +125,20 @@
             <span class="text-2xl font-extrabold">VipSmm <span class="text-indigo-600">Offers</span></span>
         </div>
     </nav>
+
+    <div class="px-5 mt-6" id="numberInputSection">
+        <div class="bg-white p-6 rounded-[30px] shadow-sm border border-gray-100">
+            <label class="block text-sm font-bold text-gray-700 mb-3">Enter Jio Mobile Number</label>
+            <div class="input-group">
+                <img src="https://flagcdn.com/w20/in.png" class="mr-2 rounded-sm" alt="India Flag">
+                <span class="font-bold text-gray-700 mr-2">+91</span>
+                <input type="tel" id="mobileNumber" maxlength="10" placeholder="00000 00000" class="w-full bg-transparent outline-none font-bold text-gray-800 tracking-widest">
+            </div>
+            <button onclick="confirmNumber()" class="w-full mt-4 bg-indigo-600 text-white font-bold py-3 rounded-2xl shadow-lg active:scale-95 transition-transform">
+                Confirm Number
+            </button>
+        </div>
+    </div>
 
     <div class="px-5 mt-8">
         <h2 class="text-2xl font-extrabold text-gray-800 mb-6">Exclusive Recharge Deals</h2>
@@ -131,6 +157,9 @@
                     <div onclick="openInfo()" class="info-btn">
                         <i class="fa-solid fa-info text-xs"></i>
                     </div>
+                </div>
+                <div class="mt-4 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded-lg display-num hidden">
+                    Recharging for: <span class="target-num">+91 0000000000</span>
                 </div>
                 <div class="mt-6 flex justify-end">
                     <button onclick="startRecharge(this, 'rechargedetails120')" class="btn-3d">
@@ -154,6 +183,9 @@
                         <i class="fa-solid fa-info text-xs"></i>
                     </div>
                 </div>
+                <div class="mt-4 text-xs font-bold text-emerald-600 bg-emerald-50 p-2 rounded-lg display-num hidden">
+                    Recharging for: <span class="target-num">+91 0000000000</span>
+                </div>
                 <div class="mt-6 flex justify-end">
                     <button onclick="startRecharge(this, 'rechargedetail348')" class="btn-3d" style="background: linear-gradient(180deg, #10B981 0%, #059669 100%); box-shadow: 0 5px 0px #065F46;">
                         <div class="loader"></div>
@@ -175,6 +207,9 @@
                     <div onclick="openInfo()" class="info-btn">
                         <i class="fa-solid fa-info text-xs"></i>
                     </div>
+                </div>
+                <div class="mt-4 text-xs font-bold text-orange-600 bg-orange-50 p-2 rounded-lg display-num hidden">
+                    Recharging for: <span class="target-num">+91 0000000000</span>
                 </div>
                 <div class="mt-6 flex justify-end">
                     <button onclick="startRecharge(this, 'rechargedetail1199')" class="btn-3d" style="background: linear-gradient(180deg, #F97316 0%, #EA580C 100%); box-shadow: 0 5px 0px #9A3412;">
@@ -207,6 +242,40 @@
     </div>
 
     <script>
+        // Number Confirmation Logic
+        function confirmNumber() {
+            const num = document.getElementById('mobileNumber').value;
+            if(num.length === 10) {
+                const fullNum = "+91 " + num;
+                // Save to local storage for payment page
+                localStorage.setItem('userMobile', fullNum);
+                
+                // Hide input section
+                document.getElementById('numberInputSection').style.display = 'none';
+                
+                // Show number on all cards
+                const displayDivs = document.querySelectorAll('.display-num');
+                const targetSpans = document.querySelectorAll('.target-num');
+                
+                targetSpans.forEach(span => span.innerText = fullNum);
+                displayDivs.forEach(div => div.classList.remove('hidden'));
+            } else {
+                alert("Please enter a valid 10-digit number");
+            }
+        }
+
+        // Back Button Fix
+        window.addEventListener('pageshow', function (event) {
+            const buttons = document.querySelectorAll('.btn-3d');
+            buttons.forEach(btn => {
+                const loader = btn.querySelector('.loader');
+                const span = btn.querySelector('span');
+                loader.style.display = 'none';
+                span.innerText = 'Recharge';
+                btn.style.pointerEvents = 'auto';
+            });
+        });
+
         function openInfo() {
             document.getElementById('infoModal').style.display = 'flex';
         }
@@ -216,25 +285,37 @@
         }
 
         function startRecharge(btn, page) {
+            // Check if number is confirmed
+            const savedNum = localStorage.getItem('userMobile');
+            if(!savedNum) {
+                alert("Please enter and confirm your mobile number first!");
+                document.getElementById('numberInputSection').scrollIntoView({behavior: 'smooth'});
+                return;
+            }
+
             const loader = btn.querySelector('.loader');
             const span = btn.querySelector('span');
             
-            // Start Loading
             loader.style.display = 'inline-block';
             span.innerText = 'Processing...';
             btn.style.pointerEvents = 'none';
 
             setTimeout(() => {
-                // Redirecting with Clean URL logic
-                // Local host par test karte waqt .html hata kar redirect karega
                 window.location.href = page; 
             }, 3000);
         }
         
-        // Modal bahar click hone par close ho jaye
         window.onclick = function(event) {
             const modal = document.getElementById('infoModal');
             if (event.target == modal) { closeInfo(); }
+        }
+
+        // Auto-fill if already saved
+        window.onload = () => {
+            const saved = localStorage.getItem('userMobile');
+            if(saved) {
+                document.getElementById('mobileNumber').value = saved.replace("+91 ", "");
+            }
         }
     </script>
 
