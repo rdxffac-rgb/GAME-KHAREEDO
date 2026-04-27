@@ -41,6 +41,9 @@
         .uid-label { display: block; text-align: left; margin-bottom: 8px; font-weight: bold; font-size: 14px; color: #666; }
         input[type="number"] { width: 100%; padding: 15px; margin-bottom: 5px; border: 2px solid #eee; border-radius: 8px; font-size: 18px; outline: none; }
         
+        /* Error Message (Popup ki jagah) */
+        #uid-error { color: #ff0000; font-size: 14px; font-weight: bold; margin-bottom: 10px; display: none; text-align: left; }
+
         #loader { display: none; margin: 15px auto; border: 4px solid #f3f3f3; border-top: 4px solid var(--primary-yellow); border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
@@ -56,7 +59,6 @@
         .stars-input span { font-size: 40px; cursor: pointer; color: #ddd; }
         .stars-input span.active { color: var(--primary-yellow); }
         
-        /* New Review Box Elements */
         #review-input-area { display: none; margin-top: 15px; }
         #review-text { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; resize: none; font-size: 14px; }
         .submit-review-btn { background: #000; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; margin-top: 10px; cursor: pointer; font-weight: bold; }
@@ -89,6 +91,7 @@
         <div class="uid-container">
             <span class="uid-label">Player ID (UID)</span>
             <input type="number" id="uid-input" placeholder="Enter Player ID">
+            <p id="uid-error">❌ Please enter a valid Player ID (5-12 digits)</p>
             <div id="loader"></div>
             <button class="topup-btn" id="submit-btn" onclick="startLoading()">Select Diamonds</button>
         </div>
@@ -134,44 +137,45 @@
 
     <script>
         function startLoading() {
-            const uidInput = document.getElementById('uid-input').value;
-            if (uidInput.length < 5) {
-                alert("Please enter a valid Player ID");
+            const uidInput = document.getElementById('uid-input');
+            const uidValue = uidInput.value;
+            const errorMsg = document.getElementById('uid-error');
+
+            if (uidValue.length < 5 || uidValue.length > 12) {
+                errorMsg.style.display = 'block'; // Show error text instead of popup
                 return;
             }
-            localStorage.setItem("playerUID", uidInput);
+
+            errorMsg.style.display = 'none';
+            localStorage.setItem("playerUID", uidValue);
+            
             const btn = document.getElementById('submit-btn');
             const loader = document.getElementById('loader');
             btn.style.display = 'none';
             loader.style.display = 'block';
+
             setTimeout(() => {
                 window.location.href = "ffdiamond.html"; 
             }, 5000); 
         }
 
-        // New Star Rating Logic
         function rate(n) {
             const stars = document.querySelectorAll('.stars-input span');
             stars.forEach((s, idx) => s.classList.toggle('active', idx < n));
-            
-            // Show Comment Box, Hide thanks message if visible
             document.getElementById('review-input-area').style.display = 'block';
             document.getElementById('thanks-msg').style.display = 'none';
         }
 
-        // New Review Submission Logic
         function submitUserReview() {
             const postBtn = document.getElementById('post-review-btn');
             const miniLoader = document.getElementById('review-mini-loader');
-            
             postBtn.style.display = 'none';
             miniLoader.style.display = 'block';
-
             setTimeout(() => {
                 miniLoader.style.display = 'none';
                 document.getElementById('review-input-area').style.display = 'none';
                 document.getElementById('thanks-msg').style.display = 'block';
-            }, 2000); // 2 Seconds Buffering
+            }, 2000);
         }
 
         const rawReviews = [
