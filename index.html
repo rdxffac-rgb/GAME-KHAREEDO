@@ -1,213 +1,155 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Kharido - Official FF Top-up</title>
+    <title>SmmGuru Premium | Next-Gen Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;700&display=swap');
-
-        :root {
-            --primary-yellow: #ffcc00;
-            --dark-grey: #222;
-            --light-bg: #ffffff;
-            --border-color: #f1f1f1;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
-        body { background-color: var(--light-bg); color: var(--dark-grey); }
-
-        header {
-            background-color: #000;
-            padding: 15px 5%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 4px solid var(--primary-yellow);
-        }
-        .brand-title { 
-            color: var(--primary-yellow); 
-            font-family: 'Oswald', sans-serif; 
-            font-size: 28px; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-        }
-
-        .hero { text-align: center; padding: 40px 20px; background: #fff; }
-        .hero h1 { font-family: 'Oswald', sans-serif; font-size: 35px; margin-bottom: 5px; color: #000; }
-        .hero p { color: #555; font-weight: bold; margin-bottom: 25px; font-size: 18px; }
-
-        .uid-container { max-width: 450px; margin: 0 auto; padding: 30px; border: 1px solid var(--border-color); border-radius: 15px; background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-        .uid-label { display: block; text-align: left; margin-bottom: 8px; font-weight: bold; font-size: 14px; color: #666; }
-        input[type="number"] { width: 100%; padding: 15px; margin-bottom: 5px; border: 2px solid #eee; border-radius: 8px; font-size: 18px; outline: none; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
         
-        /* Error Message (Popup ki jagah) */
-        #uid-error { color: #ff0000; font-size: 14px; font-weight: bold; margin-bottom: 10px; display: none; text-align: left; }
-
-        #loader { display: none; margin: 15px auto; border: 4px solid #f3f3f3; border-top: 4px solid var(--primary-yellow); border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        .topup-btn { 
-            width: 100%; padding: 16px; background: var(--primary-yellow); 
-            border: none; font-weight: 800; font-size: 18px; cursor: pointer; 
-            border-radius: 8px; text-transform: uppercase; transition: 0.3s;
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #f8fafc;
         }
 
-        /* Review Section */
-        .reviews-section { max-width: 500px; margin: 50px auto; padding: 20px; }
-        .user-rating-box { text-align: center; background: #fdfdfd; padding: 25px; border-radius: 12px; margin-bottom: 30px; border: 1px dashed #ccc; }
-        .stars-input span { font-size: 40px; cursor: pointer; color: #ddd; }
-        .stars-input span.active { color: var(--primary-yellow); }
-        
-        #review-input-area { display: none; margin-top: 15px; }
-        #review-text { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; resize: none; font-size: 14px; }
-        .submit-review-btn { background: #000; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; margin-top: 10px; cursor: pointer; font-weight: bold; }
-        #review-mini-loader { display: none; margin: 10px auto; border: 3px solid #f3f3f3; border-top: 3px solid var(--primary-yellow); border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; }
-
-        .review-card { padding: 20px; border-bottom: 1px solid var(--border-color); display: none; }
-        .review-card.visible { display: block; }
-        
-        footer { background: #111; color: #fff; padding: 50px 20px; text-align: center; margin-top: 80px; }
-        .whatsapp-btn {
-            display: inline-block; background: #25D366; color: white; padding: 12px 25px;
-            border-radius: 50px; text-decoration: none; font-weight: bold; margin: 15px 0;
-            font-size: 16px; transition: 0.3s;
+        .premium-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .footer-info h3 { color: var(--primary-yellow); margin-bottom: 15px; font-family: 'Oswald'; }
-        .footer-links { margin: 25px 0; }
-        .footer-links a { color: #fff; margin: 0 12px; font-size: 13px; text-decoration: none; opacity: 0.8; }
+
+        .premium-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #4F46E5, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
     </style>
 </head>
-<body>
+<body class="pb-10">
 
-    <header>
-        <div class="brand-title">GAME KHARIDO</div>
-    </header>
-
-    <section class="hero">
-        <h1>Diamond Top-up Center</h1>
-        <p>⚡ Instant Delivery</p>
-
-        <div class="uid-container">
-            <span class="uid-label">Player ID (UID)</span>
-            <input type="number" id="uid-input" placeholder="Enter Player ID">
-            <p id="uid-error">❌ Please enter a valid Player ID (5-12 digits)</p>
-            <div id="loader"></div>
-            <button class="topup-btn" id="submit-btn" onclick="startLoading()">Select Diamonds</button>
+    <nav class="flex items-center justify-between px-6 py-5 sticky top-0 bg-white/70 backdrop-blur-md z-50">
+        <div class="flex items-center space-x-2">
+            <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center">
+                <span class="text-white font-bold text-xl">S</span>
+            </div>
+            <span class="text-2xl font-extrabold tracking-tight text-gray-800">Smm<span class="text-indigo-600">Guru</span></span>
         </div>
-    </section>
+        <button class="bg-gray-100 p-3 rounded-2xl">
+            <i class="fa-solid fa-bars-staggered text-gray-700"></i>
+        </button>
+    </nav>
 
-    <section class="reviews-section">
-        <h3>User Reviews</h3>
-        <div class="user-rating-box">
-            <p style="margin-bottom:10px; font-weight:bold;">Rate your experience:</p>
-            <div class="stars-input" id="star-input">
-                <span onclick="rate(1)">★</span><span onclick="rate(2)">★</span><span onclick="rate(3)">★</span><span onclick="rate(4)">★</span><span onclick="rate(5)">★</span>
+    <div class="px-5 mt-4">
+        <div class="relative overflow-hidden bg-indigo-600 rounded-[2.5rem] p-8 text-white shadow-2xl shadow-indigo-200">
+            <div class="relative z-10">
+                <span class="bg-white/20 px-4 py-1 rounded-full text-xs font-semibold tracking-widest uppercase">Special Offer</span>
+                <h1 class="text-4xl font-extrabold mt-4 leading-tight">Boost Your <br> Social Presence</h1>
+                <p class="mt-2 text-indigo-100 opacity-90">Get up to 70% off on all plans this week only.</p>
+                <button class="mt-6 bg-white text-indigo-600 font-bold px-8 py-3 rounded-2xl shadow-lg hover:scale-105 transition-transform">
+                    Claim Offer
+                </button>
+            </div>
+            <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+            <div class="absolute right-10 top-10 w-20 h-20 bg-indigo-400/30 rounded-full blur-2xl"></div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 px-5 mt-6">
+        <a href="#" class="flex items-center justify-center space-x-2 bg-emerald-50 border border-emerald-100 p-4 rounded-[2rem] hover:bg-emerald-100 transition">
+            <i class="fa-brands fa-whatsapp text-emerald-600 text-xl"></i>
+            <span class="font-bold text-emerald-800 text-sm">24/7 Support</span>
+        </a>
+        <a href="#" class="flex items-center justify-center space-x-2 bg-rose-50 border border-rose-100 p-4 rounded-[2rem] hover:bg-rose-100 transition">
+            <i class="fa-brands fa-youtube text-rose-600 text-xl"></i>
+            <span class="font-bold text-rose-800 text-sm">How to Buy</span>
+        </a>
+    </div>
+
+    <div class="px-5 mt-10">
+        <div class="flex items-end justify-between mb-6">
+            <div>
+                <h2 class="text-2xl font-extrabold text-gray-800">Explore Services</h2>
+                <p class="text-gray-500 text-sm">Choose your platform to grow</p>
+            </div>
+            <div class="text-indigo-600 font-bold text-sm">View All</div>
+        </div>
+
+        <div class="space-y-4">
+            <div class="premium-card p-5 rounded-[2rem] flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 flex items-center justify-center shadow-lg shadow-red-100">
+                        <i class="fa-brands fa-instagram text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-gray-800">Instagram</h3>
+                        <p class="text-xs text-gray-500">Followers, Likes & Reels</p>
+                    </div>
+                </div>
+                <button class="bg-indigo-600 text-white px-5 py-2.5 rounded-2xl font-bold text-sm shadow-md shadow-indigo-100">Plans</button>
             </div>
 
-            <div id="review-input-area">
-                <textarea id="review-text" rows="3" placeholder="Apna experience likhein..."></textarea>
-                <div id="review-mini-loader"></div>
-                <button class="submit-review-btn" id="post-review-btn" onclick="submitUserReview()">Submit Your Review</button>
+            <div class="premium-card p-5 rounded-[2rem] flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-14 h-14 rounded-2xl bg-red-600 flex items-center justify-center shadow-lg shadow-red-100">
+                        <i class="fa-brands fa-youtube text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-gray-800">YouTube</h3>
+                        <p class="text-xs text-gray-500">Views, Watch-time & Subs</p>
+                    </div>
+                </div>
+                <button class="bg-indigo-600 text-white px-5 py-2.5 rounded-2xl font-bold text-sm shadow-md shadow-indigo-100">Plans</button>
             </div>
 
-            <p id="thanks-msg" style="display:none; color: #2ecc71; font-weight: bold; margin-top: 15px;">✅ Thanks for your review!</p>
-        </div>
-        
-        <div id="review-list"></div>
-        <button id="see-more-btn" style="width:100%; padding:10px; margin-top:10px; cursor:pointer;" onclick="showMore()">See More Reviews</button>
-    </section>
+            <div class="premium-card p-5 rounded-[2rem] flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-14 h-14 rounded-2xl bg-sky-500 flex items-center justify-center shadow-lg shadow-sky-100">
+                        <i class="fa-brands fa-telegram text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-gray-800">Telegram</h3>
+                        <p class="text-xs text-gray-500">Members & Post Views</p>
+                    </div>
+                </div>
+                <button class="bg-indigo-600 text-white px-5 py-2.5 rounded-2xl font-bold text-sm shadow-md shadow-indigo-100">Plans</button>
+            </div>
 
-    <footer>
-        <div class="footer-info">
-            <h3>GAME KHARIDO INDIA</h3>
-            <p>24/7 WhatsApp Support:</p>
-            <a href="https://wa.me/919530004641" class="whatsapp-btn">Get Help</a>
-            <p>Email: support@gamekharido.com</p>
-            <p>Office: Tower A, Digital Heights, Jaipur, Rajasthan</p>
-            <p>GSTIN: 08BKDPP8890A1Z2 (Verified Merchant)</p>
+            <div class="premium-card p-5 rounded-[2rem] flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-14 h-14 rounded-2xl bg-black flex items-center justify-center shadow-lg shadow-gray-200">
+                        <span class="text-red-600 font-black text-xl">N</span>
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-gray-800">Netflix Premium</h3>
+                        <p class="text-xs text-gray-500">Shared & Private Screens</p>
+                    </div>
+                </div>
+                <button class="bg-indigo-600 text-white px-5 py-2.5 rounded-2xl font-bold text-sm shadow-md shadow-indigo-100">Plans</button>
+            </div>
         </div>
-        <div class="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms & Conditions</a>
-            <a href="#">Refund Policy</a>
-        </div>
-        <p style="font-size:11px; color:#666; margin-top:20px;">© 2026 Game Kharido. Delivery takes 2-5 minutes via official API.</p>
+    </div>
+
+    <footer class="mt-12 px-5 text-center">
+        <p class="text-gray-400 text-xs font-medium">© 2026 SmmGuru. Designed for Professionals.</p>
     </footer>
 
-    <script>
-        function startLoading() {
-            const uidInput = document.getElementById('uid-input');
-            const uidValue = uidInput.value;
-            const errorMsg = document.getElementById('uid-error');
-
-            if (uidValue.length < 5 || uidValue.length > 12) {
-                errorMsg.style.display = 'block'; // Show error text instead of popup
-                return;
-            }
-
-            errorMsg.style.display = 'none';
-            localStorage.setItem("playerUID", uidValue);
-            
-            const btn = document.getElementById('submit-btn');
-            const loader = document.getElementById('loader');
-            btn.style.display = 'none';
-            loader.style.display = 'block';
-
-            setTimeout(() => {
-                window.location.href = "ffdiamond.html"; 
-            }, 5000); 
-        }
-
-        function rate(n) {
-            const stars = document.querySelectorAll('.stars-input span');
-            stars.forEach((s, idx) => s.classList.toggle('active', idx < n));
-            document.getElementById('review-input-area').style.display = 'block';
-            document.getElementById('thanks-msg').style.display = 'none';
-        }
-
-        function submitUserReview() {
-            const postBtn = document.getElementById('post-review-btn');
-            const miniLoader = document.getElementById('review-mini-loader');
-            postBtn.style.display = 'none';
-            miniLoader.style.display = 'block';
-            setTimeout(() => {
-                miniLoader.style.display = 'none';
-                document.getElementById('review-input-area').style.display = 'none';
-                document.getElementById('thanks-msg').style.display = 'block';
-            }, 2000);
-        }
-
-        const rawReviews = [
-            {n:"Rahul Gaming", s:"⭐⭐⭐⭐⭐", t:"Instant mil gya diamond, ekdum trusted hai."},
-            {n:"Aman FF", s:"⭐⭐⭐⭐⭐", t:"Mene prime level 8 kar liya hai, thanks bhai."},
-            {n:"Deepak YT", s:"⭐⭐⭐⭐", t:"Topup ho gya 2 min mein, bahut sahi hai."},
-            {n:"Sameer Gamer", s:"⭐⭐⭐⭐⭐", t:"Mene apni AK-47 max kar li isse diamond lekar."},
-            {n:"Vivek Singh", s:"⭐⭐⭐⭐⭐", t:"Haa diamond milte h, mene check kiya hai."},
-            {n:"Sumit Rajput", s:"⭐⭐⭐⭐⭐", t:"Me kafi time se use kar rha hu ye site."},
-            {n:"Killer Boy", s:"⭐⭐⭐⭐⭐", t:"Sabse saste diamond yahi milte hain pure India me."},
-            {n:"Rohan King", s:"⭐⭐⭐⭐", t:"Mene gun max kr li, ab maza aayega khelne me."},
-            {n:"Nitin FF", s:"⭐⭐⭐⭐⭐", t:"Bhai instant delivery hai, thnx Game Kharido."},
-            {n:"Sahil Gamer", s:"⭐⭐⭐⭐⭐", t:"Trusted site, mene 5000 diamonds liye the."}
-        ];
-
-        const reviewList = document.getElementById('review-list');
-        rawReviews.forEach((rev, i) => {
-            const div = document.createElement('div');
-            div.className = `review-card ${i < 2 ? 'visible' : ''}`;
-            div.innerHTML = `<div style="color:#ffcc00;">${rev.s}</div><strong>${rev.n}</strong><p>${rev.t}</p>`;
-            reviewList.appendChild(div);
-        });
-
-        let currentShown = 2;
-        function showMore() {
-            const allCards = document.querySelectorAll('.review-card');
-            for(let i = currentShown; i < currentShown + 4 && i < rawReviews.length; i++) {
-                allCards[i].classList.add('visible');
-            }
-            currentShown += 4;
-            if(currentShown >= rawReviews.length) document.getElementById('see-more-btn').style.display = 'none';
-        }
-    </script>
 </body>
 </html>
