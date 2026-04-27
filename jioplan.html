@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VipSmm | Premium Recharge Offers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #f8fafc;
+            color: #1a1a1a;
+        }
+
+        /* 3D Premium Card */
+        .recharge-card {
+            background: white;
+            border-radius: 35px;
+            padding: 24px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05), inset 0 1px 0 #fff, inset 0 -4px 0 rgba(0,0,0,0.02);
+            border: 1px solid #f1f5f9;
+            transition: transform 0.3s ease;
+        }
+
+        /* 3D Recharge Button */
+        .btn-3d {
+            background: linear-gradient(180deg, #6366F1 0%, #4F46E5 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 18px;
+            font-weight: 800;
+            box-shadow: 0 5px 0px #3730A3, 0 8px 15px rgba(79, 70, 229, 0.3);
+            transition: all 0.1s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 130px;
+        }
+
+        .btn-3d:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0px #3730A3;
+        }
+
+        /* Spinner for Loading */
+        .loader {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid #fff;
+            width: 18px;
+            height: 18px;
+            animation: spin 1s linear infinite;
+            display: none;
+            margin-right: 8px;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* I-Button Styling */
+        .info-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6366f1;
+            cursor: pointer;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+        }
+
+        .info-btn:hover { background: #6366f1; color: white; }
+
+        /* Modal Box */
+        #infoModal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 200;
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 30px;
+            max-width: 400px;
+            width: 100%;
+            padding: 30px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 pb-10">
+
+    <nav class="flex items-center justify-between px-6 py-5 bg-white shadow-sm sticky top-0 z-50">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center">
+                <span class="text-white font-extrabold text-2xl">V</span>
+            </div>
+            <span class="text-2xl font-extrabold">VipSmm <span class="text-indigo-600">Offers</span></span>
+        </div>
+    </nav>
+
+    <div class="px-5 mt-8">
+        <h2 class="text-2xl font-extrabold text-gray-800 mb-6">Exclusive Recharge Deals</h2>
+
+        <div class="space-y-6">
+            <div class="recharge-card border-l-8 border-indigo-600">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm line-through text-gray-400">₹349</span>
+                            <span class="text-2xl font-black text-indigo-600">₹120</span>
+                        </div>
+                        <p class="text-sm font-bold text-gray-700 mt-1">Validity: 28 Days</p>
+                        <p class="text-xs text-gray-400">Unlimited 5G Data</p>
+                    </div>
+                    <div onclick="openInfo()" class="info-btn">
+                        <i class="fa-solid fa-info text-xs"></i>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-end">
+                    <button onclick="startRecharge(this, 'rechargedetails120')" class="btn-3d">
+                        <div class="loader"></div>
+                        <span>Recharge</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="recharge-card border-l-8 border-emerald-500">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm line-through text-gray-400">₹899</span>
+                            <span class="text-2xl font-black text-emerald-600">₹348</span>
+                        </div>
+                        <p class="text-sm font-bold text-gray-700 mt-1">Validity: 90 Days</p>
+                        <p class="text-xs text-gray-400">90 Days Unlimited Pack</p>
+                    </div>
+                    <div onclick="openInfo()" class="info-btn">
+                        <i class="fa-solid fa-info text-xs"></i>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-end">
+                    <button onclick="startRecharge(this, 'rechargedetail348')" class="btn-3d" style="background: linear-gradient(180deg, #10B981 0%, #059669 100%); box-shadow: 0 5px 0px #065F46;">
+                        <div class="loader"></div>
+                        <span>Recharge</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="recharge-card border-l-8 border-orange-500">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm line-through text-gray-400">₹3599</span>
+                            <span class="text-2xl font-black text-orange-600">₹1199</span>
+                        </div>
+                        <p class="text-sm font-bold text-gray-700 mt-1">Validity: 365 Days</p>
+                        <p class="text-xs text-gray-400">Full Year Premium Pack</p>
+                    </div>
+                    <div onclick="openInfo()" class="info-btn">
+                        <i class="fa-solid fa-info text-xs"></i>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-end">
+                    <button onclick="startRecharge(this, 'rechargedetail1199')" class="btn-3d" style="background: linear-gradient(180deg, #F97316 0%, #EA580C 100%); box-shadow: 0 5px 0px #9A3412;">
+                        <div class="loader"></div>
+                        <span>Recharge</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="infoModal">
+        <div class="modal-content">
+            <button onclick="closeInfo()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-900 text-xl">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+            <h3 class="text-xl font-black text-gray-900 mb-4">Plan Details</h3>
+            <div class="space-y-4 text-sm leading-relaxed text-gray-600">
+                <p><strong>Jio Special benefits:</strong> True 5G Unlimited Plan + JioHotstar Mobile + Pro Google Gemini.</p>
+                <p><strong>Voice:</strong> Unlimited Calls | <strong>SMS:</strong> 100 SMS/day</p>
+                <div class="bg-indigo-50 p-4 rounded-2xl border border-indigo-100">
+                    <p class="text-indigo-800 font-bold">FREE 18-month Pro plan of Google Gemini worth Rs.35,100, with 5000 GB cloud storage, Nano Banana and more.</p>
+                </div>
+                <p class="text-xs"><strong>Note:</strong> 1.Google Gemini offer-Visit MyJio & register your Gmail ID. 2.User to be continuously on active Unlimited 5G Plan of 349 or above to keep accessing Google Gemini & JioHotstar Mobile benefits.</p>
+                <p>Login on JioHotstar /JioAICloud with the same Jio Number.</p>
+                <p>Enjoy Unlimited 5G/higher GB & more offer benefits than 299 Plan or other like 249,199,239...</p>
+                <p>Complimentary subscription to Jio Apps - JioTV, JioAICloud. Jio T&C apply <span class="text-indigo-600 underline">https://tiny.jio.com/jiotnc</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openInfo() {
+            document.getElementById('infoModal').style.display = 'flex';
+        }
+
+        function closeInfo() {
+            document.getElementById('infoModal').style.display = 'none';
+        }
+
+        function startRecharge(btn, page) {
+            const loader = btn.querySelector('.loader');
+            const span = btn.querySelector('span');
+            
+            // Start Loading
+            loader.style.display = 'inline-block';
+            span.innerText = 'Processing...';
+            btn.style.pointerEvents = 'none';
+
+            setTimeout(() => {
+                // Redirecting with Clean URL logic
+                // Local host par test karte waqt .html hata kar redirect karega
+                window.location.href = page; 
+            }, 3000);
+        }
+        
+        // Modal bahar click hone par close ho jaye
+        window.onclick = function(event) {
+            const modal = document.getElementById('infoModal');
+            if (event.target == modal) { closeInfo(); }
+        }
+    </script>
+
+</body>
+</html>
