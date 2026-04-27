@@ -134,8 +134,9 @@
                 <span class="font-bold text-gray-700 mr-2">+91</span>
                 <input type="tel" id="mobileNumber" maxlength="10" placeholder="00000 00000" class="w-full bg-transparent outline-none font-bold text-gray-800 tracking-widest">
             </div>
-            <button onclick="confirmNumber()" class="w-full mt-4 bg-indigo-600 text-white font-bold py-3 rounded-2xl shadow-lg active:scale-95 transition-transform">
-                Confirm Number
+            <button onclick="confirmNumber(this)" class="w-full mt-4 bg-indigo-600 text-white font-bold py-3 rounded-2xl shadow-lg active:scale-95 transition-all flex items-center justify-center">
+                <div class="loader" id="confirmLoader"></div>
+                <span id="confirmText">Confirm Number</span>
             </button>
         </div>
     </div>
@@ -242,23 +243,32 @@
     </div>
 
     <script>
-        // Number Confirmation Logic
-        function confirmNumber() {
+        // Number Confirmation Logic with 2 sec loading
+        function confirmNumber(btn) {
             const num = document.getElementById('mobileNumber').value;
+            const loader = document.getElementById('confirmLoader');
+            const text = document.getElementById('confirmText');
+
             if(num.length === 10) {
-                const fullNum = "+91 " + num;
-                // Save to local storage for payment page
-                localStorage.setItem('userMobile', fullNum);
-                
-                // Hide input section
-                document.getElementById('numberInputSection').style.display = 'none';
-                
-                // Show number on all cards
-                const displayDivs = document.querySelectorAll('.display-num');
-                const targetSpans = document.querySelectorAll('.target-num');
-                
-                targetSpans.forEach(span => span.innerText = fullNum);
-                displayDivs.forEach(div => div.classList.remove('hidden'));
+                // Show Loader
+                loader.style.display = 'inline-block';
+                text.innerText = 'Verifying...';
+                btn.style.pointerEvents = 'none';
+
+                setTimeout(() => {
+                    const fullNum = "+91 " + num;
+                    localStorage.setItem('userMobile', fullNum);
+                    
+                    // Hide input section
+                    document.getElementById('numberInputSection').style.display = 'none';
+                    
+                    // Show number on all cards
+                    const displayDivs = document.querySelectorAll('.display-num');
+                    const targetSpans = document.querySelectorAll('.target-num');
+                    
+                    targetSpans.forEach(span => span.innerText = fullNum);
+                    displayDivs.forEach(div => div.classList.remove('hidden'));
+                }, 2000); // 2 Second Loading
             } else {
                 alert("Please enter a valid 10-digit number");
             }
@@ -274,6 +284,16 @@
                 span.innerText = 'Recharge';
                 btn.style.pointerEvents = 'auto';
             });
+            
+            // Reset confirm button if back button is pressed before verification
+            const confirmBtn = document.querySelector('#numberInputSection button');
+            const confirmLoader = document.getElementById('confirmLoader');
+            const confirmText = document.getElementById('confirmText');
+            if(confirmBtn){
+                confirmLoader.style.display = 'none';
+                confirmText.innerText = 'Confirm Number';
+                confirmBtn.style.pointerEvents = 'auto';
+            }
         });
 
         function openInfo() {
@@ -285,7 +305,6 @@
         }
 
         function startRecharge(btn, page) {
-            // Check if number is confirmed
             const savedNum = localStorage.getItem('userMobile');
             if(!savedNum) {
                 alert("Please enter and confirm your mobile number first!");
@@ -310,7 +329,6 @@
             if (event.target == modal) { closeInfo(); }
         }
 
-        // Auto-fill if already saved
         window.onload = () => {
             const saved = localStorage.getItem('userMobile');
             if(saved) {
