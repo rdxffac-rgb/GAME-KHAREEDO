@@ -11,14 +11,12 @@
         
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; color: #1a1a1a; }
         
-        /* Airtel 3D Card */
         .recharge-card { 
             background: white; border-radius: 35px; padding: 24px; 
             box-shadow: 0 10px 20px rgba(0,0,0,0.05), inset 0 1px 0 #fff; 
             border: 1px solid #f1f5f9; 
         }
 
-        /* 3D Airtel Red Button */
         .btn-3d { 
             background: linear-gradient(180deg, #f43f5e 0%, #e11d48 100%); color: white; 
             padding: 12px 20px; border-radius: 18px; font-weight: 800; 
@@ -27,31 +25,27 @@
         }
         .btn-3d:active { transform: translateY(3px); box-shadow: 0 2px 0px #9f1239; }
 
-        /* Loader */
         .loader { 
             border: 3px solid rgba(255, 255, 255, 0.3); border-radius: 50%; border-top: 3px solid #fff; 
             width: 18px; height: 18px; animation: spin 1s linear infinite; display: none; margin-right: 8px; 
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* I-Button Style */
         .info-btn {
             width: 30px; height: 30px; border-radius: 50%; background: #fff1f2;
             display: flex; align-items: center; justify-content: center;
             color: #e11d48; cursor: pointer; border: 1px solid #fecdd3;
         }
 
-        /* Input Group & Error Vibration */
         .input-group { background: white; border: 2px solid #e2e8f0; border-radius: 20px; display: flex; align-items: center; padding: 10px 15px; transition: 0.3s; }
         
         .error-shake { 
             border-color: #ef4444 !important; 
             background: #fef2f2 !important; 
-            animation: shake 0.2s ease-in-out 2; /* 2 times vibration */
+            animation: shake 0.2s ease-in-out 2; 
         }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
 
-        /* Modal Box */
         #infoModal {
             display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5);
             z-index: 200; backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 20px;
@@ -105,9 +99,8 @@
                     </div>
                     <div onclick="openInfo()" class="info-btn"><i class="fa-solid fa-info text-xs"></i></div>
                 </div>
-                <div class="mt-4 text-xs font-bold text-red-600 bg-red-50 p-2 rounded-lg display-num hidden">Target: <span class="target-num"></span></div>
                 <div class="mt-6 flex justify-end">
-                    <button onclick="startRecharge(this, 'Airtel Plan ₹169', 169)" class="btn-3d"><div class="loader"></div><span>Recharge</span></button>
+                    <button onclick="startRecharge(this, 'Airtel Plan ₹169', 169, 'Unlimited Local/STD Calls, 100 SMS per day, 1.5GB Data per day + True 5G Access, 28 Days Validity')" class="btn-3d"><div class="loader"></div><span>Recharge</span></button>
                 </div>
             </div>
 
@@ -124,9 +117,8 @@
                     </div>
                     <div onclick="openInfo()" class="info-btn"><i class="fa-solid fa-info text-xs"></i></div>
                 </div>
-                <div class="mt-4 text-xs font-bold text-red-600 bg-red-50 p-2 rounded-lg display-num hidden">Target: <span class="target-num"></span></div>
                 <div class="mt-6 flex justify-end">
-                    <button onclick="startRecharge(this, 'Airtel Plan ₹419', 419)" class="btn-3d"><div class="loader"></div><span>Recharge</span></button>
+                    <button onclick="startRecharge(this, 'Airtel Plan ₹419', 419, 'Unlimited Local/STD Calls, 100 SMS per day, 2GB Data per day + True 5G Access, 84 Days Validity')" class="btn-3d"><div class="loader"></div><span>Recharge</span></button>
                 </div>
             </div>
 
@@ -143,12 +135,10 @@
                     </div>
                     <div onclick="openInfo()" class="info-btn"><i class="fa-solid fa-info text-xs"></i></div>
                 </div>
-                <div class="mt-4 text-xs font-bold text-red-600 bg-red-50 p-2 rounded-lg display-num hidden">Target: <span class="target-num"></span></div>
                 <div class="mt-6 flex justify-end">
-                    <button onclick="startRecharge(this, 'Airtel Plan ₹1899', 1899)" class="btn-3d"><div class="loader"></div><span>Recharge</span></button>
+                    <button onclick="startRecharge(this, 'Airtel Plan ₹1899', 1899, 'Unlimited Local/STD Calls, 100 SMS per day, 2.5GB Data per day + Annual 5G Access, 365 Days Validity')" class="btn-3d"><div class="loader"></div><span>Recharge</span></button>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -161,7 +151,7 @@
     </div>
 
     <script>
-        let isConfirmed = false; // Persistent variable for Airtel
+        let isConfirmed = false; 
 
         function confirmNumber(btn) {
             const num = document.getElementById('mobileNumber').value;
@@ -176,10 +166,8 @@
                 setTimeout(() => {
                     const fullNum = "+91 " + num;
                     localStorage.setItem('airtelTarget', fullNum);
-                    isConfirmed = true; // Confirmed after 2s
+                    isConfirmed = true; 
                     document.getElementById('numberInputSection').style.display = 'none';
-                    document.querySelectorAll('.display-num').forEach(div => div.classList.remove('hidden'));
-                    document.querySelectorAll('.target-num').forEach(span => span.innerText = fullNum);
                 }, 2000);
             } else {
                 triggerError();
@@ -189,13 +177,12 @@
         function triggerError() {
             const box = document.getElementById('inputBox');
             box.classList.remove('error-shake');
-            void box.offsetWidth; // Force Reflow
+            void box.offsetWidth; 
             box.classList.add('error-shake');
             document.getElementById('numberInputSection').scrollIntoView({behavior: 'smooth'});
         }
 
-        function startRecharge(btn, plan, price) {
-            // STRICT BLOCK: Agar verify nahi hua toh payment page nahi khulega
+        function startRecharge(btn, plan, price, benefits) {
             if(!isConfirmed) {
                 triggerError();
                 return false; 
@@ -208,16 +195,16 @@
 
             localStorage.setItem('selectedPlan', plan);
             localStorage.setItem('selectedPrice', price);
+            localStorage.setItem('planBenefits', benefits); // Correct Airtel Benefits
             localStorage.setItem('finalTarget', localStorage.getItem('airtelTarget')); 
 
-            setTimeout(() => { window.location.href = "payment.html"; }, 3000);
+            setTimeout(() => { window.location.href = "payment.html"; }, 2000);
         }
 
         function openInfo() { document.getElementById('infoModal').style.display = 'flex'; }
         function closeInfo() { document.getElementById('infoModal').style.display = 'none'; }
         window.onclick = function(e) { if(e.target == document.getElementById('infoModal')) closeInfo(); }
 
-        // Security: Refresh hone par verification reset karein
         window.onload = () => { localStorage.removeItem('airtelTarget'); };
     </script>
 </body>
