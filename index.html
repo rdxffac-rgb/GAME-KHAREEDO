@@ -71,6 +71,9 @@
             border-radius: 16px;
             font-weight: 700;
             box-shadow: 0 4px 0px #3730A3;
+            cursor: pointer;
+            border: none;
+            outline: none;
         }
 
         .icon-container {
@@ -161,8 +164,11 @@
         <h2 class="text-2xl font-extrabold text-gray-900 mb-6">Our Services</h2>
 
         <div class="premium-3d-card jio-border">
-            <div class="flex items-center"><div class="icon-container bg-[#005AFF] italic text-white font-black">Jio</div><div><h3 class="font-extrabold">Jio</h3><p class="text-xs text-gray-500">Recharge Unlimited 5G</p></div></div>
-            <button class="premium-3d-button">Plans</button>
+            <div class="flex items-center">
+                <div class="icon-container bg-[#005AFF] italic text-white font-black">Jio</div>
+                <div><h3 class="font-extrabold">Jio</h3><p class="text-xs text-gray-500">Recharge Unlimited 5G</p></div>
+            </div>
+            <button onclick="goToJioPlans()" class="premium-3d-button">Plans</button>
         </div>
 
         <div class="premium-3d-card airtel-border">
@@ -243,6 +249,14 @@
         function shareReferral() {
             const message = encodeURIComponent("Check this out! I just ordered from here. You should try it too—they provide the fastest and most original followers and social services! 🚀");
             window.location.href = `whatsapp://send?text=${message}`;
+        }
+
+        // Clean URL Redirect for Jio Plans
+        function goToJioPlans() {
+            // PushState se URL bar change hoga
+            history.pushState(null, '', '/jioplan');
+            // actual navigation
+            window.location.href = "jioplan.html";
         }
     </script>
 </body>
