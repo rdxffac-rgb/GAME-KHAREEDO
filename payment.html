@@ -47,10 +47,9 @@
         }
 
         .upi-icons-grid img {
-            width: 32px;
-            height: 32px;
-            filter: grayscale(0.2);
-            opacity: 0.8;
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
         }
 
         .billing-item {
@@ -80,11 +79,11 @@
                 <h3 class="text-gray-400 text-[10px] font-extrabold uppercase tracking-widest mb-4">Billing Summary</h3>
                 <div class="billing-item">
                     <span class="text-gray-500 font-semibold">Order Item</span>
-                    <span id="finalPlan" class="font-bold text-gray-900">...</span>
+                    <span id="finalPlan" class="font-bold text-gray-900 text-right">...</span>
                 </div>
                 <div class="billing-item">
                     <span class="text-gray-500 font-semibold">Target Details</span>
-                    <span id="finalTarget" class="font-bold text-indigo-600">...</span>
+                    <span id="finalTarget" class="font-bold text-indigo-600 text-right">...</span>
                 </div>
                 <div class="flex justify-between items-center py-6">
                     <span class="text-gray-800 font-black text-lg">Amount Due</span>
@@ -99,9 +98,9 @@
                 <p class="text-[11px] font-bold text-gray-500">Scan to pay via any UPI App</p>
                 
                 <div class="flex justify-center items-center space-x-4 mt-4 upi-icons-grid">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Pay_Logo.svg" alt="GPay">
-                    <img src="https://img.icons8.com/color/48/000000/paytm.png" alt="Paytm">
-                    <img src="https://www.vectorlogo.zone/logos/amazon_pay/amazon_pay-icon.svg" alt="Amazon Pay">
+                    <img src="https://www.vectorlogo.zone/logos/google_pay/google_pay-icon.svg" alt="GPay">
+                    <img src="https://www.vectorlogo.zone/logos/paytm/paytm-icon.svg" alt="Paytm">
+                    <img src="https://www.vectorlogo.zone/logos/amazon_pay/amazon_pay-icon.svg" alt="AmazonPay">
                     <img src="https://raw.githubusercontent.com/sonu-360/UPI-Icon/main/upi.png" alt="UPI">
                 </div>
                 <p class="text-[10px] font-black text-indigo-400 mt-2 italic uppercase">Works on all UPI apps</p>
@@ -124,20 +123,22 @@
     </div>
 
     <script>
+        // Clean URL Logic
+        (function() {
+            const path = window.location.pathname;
+            if (path.endsWith('.html')) {
+                const cleanPath = path.slice(0, -5); 
+                window.history.replaceState(null, '', cleanPath);
+            }
+        })();
+
         // Generate a random Transaction ID
         document.getElementById('txnId').innerText = "TXN" + Math.floor(Math.random() * 9999999999);
 
-        // Fetch Data from all possible storage keys
+        // STICKY DATA FETCHING: prioritizes 'finalTarget' set by service pages
         const plan = localStorage.getItem('selectedPlan') || "Premium Service";
         const price = localStorage.getItem('selectedPrice') || "0";
-        
-        // Target priority check
-        let target = localStorage.getItem('userMobile') || 
-                     localStorage.getItem('instaUser') || 
-                     localStorage.getItem('ytTarget') || 
-                     localStorage.getItem('fbTarget') || 
-                     localStorage.getItem('primeUser') || 
-                     "Verified ID";
+        const target = localStorage.getItem('finalTarget') || "Verify ID";
 
         // Display Data
         document.getElementById('finalPlan').innerText = plan;
@@ -166,9 +167,6 @@
         function openUpiApp() {
             window.location.href = upiUrl;
         }
-
-        // Automatic Success Redirection Simulation (Optional)
-        // Aap yahan payment success webhook bhi laga sakte hain real server par
     </script>
 </body>
 </html>
