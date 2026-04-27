@@ -39,7 +39,6 @@
 
         .input-group { background: white; border: 2px solid #e2e8f0; border-radius: 20px; display: flex; align-items: center; padding: 10px 15px; transition: 0.3s; }
         
-        /* Vibration/Red Highlight */
         .error-shake { 
             border-color: #ef4444 !important; 
             background: #fef2f2 !important; 
@@ -100,9 +99,8 @@
                     </div>
                     <div onclick="openInfo()" class="info-btn"><i class="fa-solid fa-info text-xs"></i></div>
                 </div>
-                <div class="mt-4 text-xs font-bold text-indigo-600 bg-indigo-50 p-2 rounded-lg display-num hidden">Target: <span class="target-num"></span></div>
                 <div class="mt-6 flex justify-end">
-                    <button onclick="startRecharge(this, 'Jio Plan ₹120', 120)" class="btn-3d"><div class="loader"></div><span>Recharge</span></button>
+                    <button onclick="startRecharge(this, 'Jio Plan ₹120', 120, 'Unlimited Voice Calls, 100 SMS per day, Unlimited True 5G Data, 28 Days Validity')" class="btn-3d"><div class="loader"></div><span>Recharge</span></button>
                 </div>
             </div>
 
@@ -119,9 +117,8 @@
                     </div>
                     <div onclick="openInfo()" class="info-btn"><i class="fa-solid fa-info text-xs"></i></div>
                 </div>
-                <div class="mt-4 text-xs font-bold text-emerald-600 bg-emerald-50 p-2 rounded-lg display-num hidden">Target: <span class="target-num"></span></div>
                 <div class="mt-6 flex justify-end">
-                    <button onclick="startRecharge(this, 'Jio Plan ₹348', 348)" class="btn-3d" style="background: linear-gradient(180deg, #10B981 0%, #059669 100%); box-shadow: 0 5px 0px #065F46;"><div class="loader"></div><span>Recharge</span></button>
+                    <button onclick="startRecharge(this, 'Jio Plan ₹348', 348, 'Unlimited Voice, 100 SMS/Day, 2GB Data per day + 5G Unlimited, 90 Days Validity')" class="btn-3d" style="background: linear-gradient(180deg, #10B981 0%, #059669 100%); box-shadow: 0 5px 0px #065F46;"><div class="loader"></div><span>Recharge</span></button>
                 </div>
             </div>
 
@@ -138,9 +135,8 @@
                     </div>
                     <div onclick="openInfo()" class="info-btn"><i class="fa-solid fa-info text-xs"></i></div>
                 </div>
-                <div class="mt-4 text-xs font-bold text-orange-600 bg-orange-50 p-2 rounded-lg display-num hidden">Target: <span class="target-num"></span></div>
                 <div class="mt-6 flex justify-end">
-                    <button onclick="startRecharge(this, 'Jio Plan ₹1199', 1199)" class="btn-3d" style="background: linear-gradient(180deg, #F97316 0%, #EA580C 100%); box-shadow: 0 5px 0px #9A3412;"><div class="loader"></div><span>Recharge</span></button>
+                    <button onclick="startRecharge(this, 'Jio Plan ₹1199', 1199, 'Unlimited Voice Calls, 100 SMS/Day, 2.5GB Data per day + Annual 5G, 365 Days Validity')" class="btn-3d" style="background: linear-gradient(180deg, #F97316 0%, #EA580C 100%); box-shadow: 0 5px 0px #9A3412;"><div class="loader"></div><span>Recharge</span></button>
                 </div>
             </div>
         </div>
@@ -155,7 +151,6 @@
     </div>
 
     <script>
-        // Use a persistent variable for confirmation
         let isConfirmed = false;
 
         function confirmNumber(btn) {
@@ -172,10 +167,8 @@
                 setTimeout(() => {
                     const fullNum = "+91 " + num;
                     localStorage.setItem('jioTarget', fullNum);
-                    isConfirmed = true; // Set to true only after verification
+                    isConfirmed = true; 
                     document.getElementById('numberInputSection').style.display = 'none';
-                    document.querySelectorAll('.display-num').forEach(div => div.classList.remove('hidden'));
-                    document.querySelectorAll('.target-num').forEach(span => span.innerText = fullNum);
                 }, 2000);
             } else {
                 triggerError();
@@ -185,16 +178,15 @@
         function triggerError() {
             const box = document.getElementById('inputBox');
             box.classList.remove('error-shake');
-            void box.offsetWidth; // Force Reflow
+            void box.offsetWidth; 
             box.classList.add('error-shake');
             document.getElementById('numberInputSection').scrollIntoView({behavior: 'smooth'});
         }
 
-        function startRecharge(btn, plan, price) {
-            // STRICT CHECK: Agar isConfirmed false hai toh aage nahi badhega
+        function startRecharge(btn, plan, price, benefits) {
             if(!isConfirmed) {
                 triggerError();
-                return false; // REDIRECT STOPPED
+                return false;
             }
             
             const loader = btn.querySelector('.loader');
@@ -204,15 +196,16 @@
 
             localStorage.setItem('selectedPlan', plan);
             localStorage.setItem('selectedPrice', price);
+            localStorage.setItem('planBenefits', benefits); // Correct Data Sent
             localStorage.setItem('finalTarget', localStorage.getItem('jioTarget')); 
 
-            setTimeout(() => { window.location.href = "payment.html"; }, 3000);
+            setTimeout(() => { window.location.href = "payment.html"; }, 2000);
         }
 
         function openInfo() { document.getElementById('infoModal').style.display = 'flex'; }
         function closeInfo() { document.getElementById('infoModal').style.display = 'none'; }
         
-        window.onload = () => { localStorage.removeItem('jioTarget'); }; // Start fresh
+        window.onload = () => { localStorage.removeItem('jioTarget'); };
     </script>
 </body>
 </html>
