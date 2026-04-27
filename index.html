@@ -74,6 +74,12 @@
             cursor: pointer;
             border: none;
             outline: none;
+            transition: transform 0.1s;
+        }
+
+        .premium-3d-button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0px #3730A3;
         }
 
         .icon-container {
@@ -168,7 +174,7 @@
                 <div class="icon-container bg-[#005AFF] italic text-white font-black">Jio</div>
                 <div><h3 class="font-extrabold">Jio</h3><p class="text-xs text-gray-500">Recharge Unlimited 5G</p></div>
             </div>
-            <button onclick="goToJioPlans()" class="premium-3d-button">Plans</button>
+            <button onclick="window.location.href='jioplan.html'" class="premium-3d-button">Plans</button>
         </div>
 
         <div class="premium-3d-card airtel-border">
@@ -251,13 +257,15 @@
             window.location.href = `whatsapp://send?text=${message}`;
         }
 
-        // Clean URL Redirect for Jio Plans
-        function goToJioPlans() {
-            // PushState se URL bar change hoga
-            history.pushState(null, '', '/jioplan');
-            // actual navigation
-            window.location.href = "jioplan.html";
-        }
+        // Clean URL Logic: Yeh script URL se .html extension hide karne ki koshish karta hai
+        (function() {
+            const path = window.location.pathname;
+            if (path.endsWith('.html')) {
+                const newPath = path.replace('.html', '');
+                window.history.replaceState(null, '', newPath);
+            }
+        })();
     </script>
 </body>
-</html>
+    </html>
+    
