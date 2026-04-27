@@ -42,10 +42,16 @@
         }
         .info-btn:hover { background: #6366f1; color: white; }
 
-        /* Error Shake Effect */
+        /* Input Group & Error Shake */
         .input-group { background: white; border: 2px solid #e2e8f0; border-radius: 20px; display: flex; align-items: center; padding: 10px 15px; transition: all 0.3s; }
-        .error-shake { border-color: #ef4444 !important; background: #fef2f2 !important; animation: shake 0.4s ease-in-out; }
-        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+        
+        /* Vibration/Shake Animation */
+        .error-shake { 
+            border-color: #ef4444 !important; 
+            background: #fef2f2 !important; 
+            animation: shake 0.2s ease-in-out 2; /* 2 times vibration */
+        }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
 
         /* Modal Box */
         #infoModal {
@@ -58,7 +64,6 @@
             box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
         }
 
-        /* Plan Detail Mini Tags */
         .plan-tag { font-size: 11px; font-weight: 700; color: #64748b; background: #f1f5f9; padding: 4px 10px; border-radius: 10px; display: inline-block; margin-top: 5px; }
     </style>
 </head>
@@ -77,7 +82,7 @@
             <div class="input-group" id="inputBox">
                 <img src="https://flagcdn.com/w20/in.png" class="mr-2 rounded-sm">
                 <span class="font-bold text-gray-700 mr-2">+91</span>
-                <input type="tel" id="mobileNumber" maxlength="10" placeholder="00000 00000" class="w-full bg-transparent outline-none font-bold text-gray-800">
+                <input type="tel" id="mobileNumber" maxlength="10" placeholder="00000 00000" class="w-full bg-transparent outline-none font-bold text-gray-800 tracking-widest">
             </div>
             <button onclick="confirmNumber(this)" class="w-full mt-4 bg-indigo-600 text-white font-bold py-3 rounded-2xl shadow-lg flex items-center justify-center transition-all active:scale-95">
                 <div class="loader" id="confirmLoader"></div>
@@ -89,7 +94,6 @@
     <div class="px-5 mt-8">
         <h2 class="text-2xl font-extrabold text-gray-800 mb-6">Jio Exclusive Offers</h2>
         <div class="space-y-6">
-            
             <div class="recharge-card border-l-8 border-indigo-600">
                 <div class="flex justify-between items-start">
                     <div>
@@ -146,7 +150,6 @@
                     <button onclick="startRecharge(this, 'Jio Plan ₹1199', 1199)" class="btn-3d" style="background: linear-gradient(180deg, #F97316 0%, #EA580C 100%); box-shadow: 0 5px 0px #9A3412;"><div class="loader"></div><span>Recharge</span></button>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -156,12 +159,10 @@
             <h3 class="text-xl font-black text-gray-900 mb-4">Jio Plan Details</h3>
             <div class="space-y-4 text-sm leading-relaxed text-gray-600">
                 <p><strong>Jio Special benefits:</strong> True 5G Unlimited Plan + JioHotstar Mobile + Pro Google Gemini.</p>
-                <p><strong>Voice:</strong> Unlimited Local & STD Calls to any network in India.</p>
-                <p><strong>SMS:</strong> 100 SMS per day included.</p>
                 <div class="bg-indigo-50 p-4 rounded-2xl border border-indigo-100">
-                    <p class="text-indigo-800 font-bold">FREE 18-month Pro plan of Google Gemini worth Rs.35,100, with 5000 GB cloud storage, Nano Banana and more.</p>
+                    <p class="text-indigo-800 font-bold">FREE 18-month Pro plan of Google Gemini worth Rs.35,100.</p>
                 </div>
-                <p class="text-xs"><strong>Note:</strong> Visit MyJio to claim Google Gemini offer. User to be on active Unlimited 5G Plan.</p>
+                <p class="text-xs"><strong>Note:</strong> Active 5G handset required for Unlimited 5G.</p>
             </div>
         </div>
     </div>
@@ -184,7 +185,11 @@
                     document.querySelectorAll('.display-num').forEach(div => div.classList.remove('hidden'));
                     document.querySelectorAll('.target-num').forEach(span => span.innerText = fullNum);
                 }, 2000);
-            } else { box.classList.add('error-shake'); }
+            } else { 
+                box.classList.remove('error-shake');
+                void box.offsetWidth; // Trigger reflow
+                box.classList.add('error-shake'); 
+            }
         }
 
         function startRecharge(btn, plan, price) {
@@ -192,9 +197,12 @@
             const box = document.getElementById('inputBox');
 
             if(!savedNum) {
+                // Shake number box if recharge is clicked without number
+                box.classList.remove('error-shake');
+                void box.offsetWidth; // Trigger reflow
                 box.classList.add('error-shake');
                 document.getElementById('numberInputSection').scrollIntoView({behavior: 'smooth'});
-                return;
+                return; // Stop the click from opening payment page
             }
             
             const loader = btn.querySelector('.loader');
@@ -219,5 +227,4 @@
         });
     </script>
 </body>
-                                                                   </html>
-                                                                   
+</html>
