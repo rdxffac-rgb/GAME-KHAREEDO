@@ -57,6 +57,9 @@
             padding: 30px; max-height: 80vh; overflow-y: auto; position: relative;
             box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
         }
+
+        /* Plan Detail Mini Tags */
+        .plan-tag { font-size: 11px; font-weight: 700; color: #64748b; background: #f1f5f9; padding: 4px 10px; border-radius: 10px; display: inline-block; margin-top: 5px; }
     </style>
 </head>
 <body class="bg-gray-50 pb-10">
@@ -74,7 +77,7 @@
             <div class="input-group" id="inputBox">
                 <img src="https://flagcdn.com/w20/in.png" class="mr-2 rounded-sm">
                 <span class="font-bold text-gray-700 mr-2">+91</span>
-                <input type="tel" id="mobileNumber" maxlength="10" placeholder="00000 00000" class="w-full bg-transparent outline-none font-bold text-gray-800 tracking-widest">
+                <input type="tel" id="mobileNumber" maxlength="10" placeholder="00000 00000" class="w-full bg-transparent outline-none font-bold text-gray-800">
             </div>
             <button onclick="confirmNumber(this)" class="w-full mt-4 bg-indigo-600 text-white font-bold py-3 rounded-2xl shadow-lg flex items-center justify-center transition-all active:scale-95">
                 <div class="loader" id="confirmLoader"></div>
@@ -92,6 +95,11 @@
                     <div>
                         <div class="flex items-center space-x-2"><span class="text-sm line-through text-gray-400">₹349</span><span class="text-2xl font-black text-indigo-600">₹120</span></div>
                         <p class="text-sm font-bold text-gray-700">Validity: 28 Days</p>
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            <span class="plan-tag">Unlimited Voice</span>
+                            <span class="plan-tag">100 SMS/Day</span>
+                            <span class="plan-tag">Unlimited True 5G</span>
+                        </div>
                     </div>
                     <div onclick="openInfo()" class="info-btn"><i class="fa-solid fa-info text-xs"></i></div>
                 </div>
@@ -106,6 +114,11 @@
                     <div>
                         <div class="flex items-center space-x-2"><span class="text-sm line-through text-gray-400">₹899</span><span class="text-2xl font-black text-emerald-600">₹348</span></div>
                         <p class="text-sm font-bold text-gray-700">Validity: 90 Days</p>
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            <span class="plan-tag">Unlimited Voice</span>
+                            <span class="plan-tag">100 SMS/Day</span>
+                            <span class="plan-tag">2GB/Day + 5G Data</span>
+                        </div>
                     </div>
                     <div onclick="openInfo()" class="info-btn"><i class="fa-solid fa-info text-xs"></i></div>
                 </div>
@@ -120,6 +133,11 @@
                     <div>
                         <div class="flex items-center space-x-2"><span class="text-sm line-through text-gray-400">₹3599</span><span class="text-2xl font-black text-orange-600">₹1199</span></div>
                         <p class="text-sm font-bold text-gray-700">Validity: 365 Days</p>
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            <span class="plan-tag">Unlimited Voice</span>
+                            <span class="plan-tag">100 SMS/Day</span>
+                            <span class="plan-tag">2.5GB/Day + Annual 5G</span>
+                        </div>
                     </div>
                     <div onclick="openInfo()" class="info-btn"><i class="fa-solid fa-info text-xs"></i></div>
                 </div>
@@ -138,13 +156,12 @@
             <h3 class="text-xl font-black text-gray-900 mb-4">Jio Plan Details</h3>
             <div class="space-y-4 text-sm leading-relaxed text-gray-600">
                 <p><strong>Jio Special benefits:</strong> True 5G Unlimited Plan + JioHotstar Mobile + Pro Google Gemini.</p>
-                <p><strong>Voice:</strong> Unlimited Calls | <strong>SMS:</strong> 100 SMS/day</p>
+                <p><strong>Voice:</strong> Unlimited Local & STD Calls to any network in India.</p>
+                <p><strong>SMS:</strong> 100 SMS per day included.</p>
                 <div class="bg-indigo-50 p-4 rounded-2xl border border-indigo-100">
                     <p class="text-indigo-800 font-bold">FREE 18-month Pro plan of Google Gemini worth Rs.35,100, with 5000 GB cloud storage, Nano Banana and more.</p>
                 </div>
-                <p class="text-xs"><strong>Note:</strong> 1.Google Gemini offer-Visit MyJio & register your Gmail ID. 2.User to be continuously on active Unlimited 5G Plan to access benefits.</p>
-                <p>Enjoy Unlimited 5G/higher GB & more offer benefits than 299 Plan.</p>
-                <p>Complimentary subscription to Jio Apps - JioTV, JioAICloud. Jio T&C apply.</p>
+                <p class="text-xs"><strong>Note:</strong> Visit MyJio to claim Google Gemini offer. User to be on active Unlimited 5G Plan.</p>
             </div>
         </div>
     </div>
@@ -202,4 +219,5 @@
         });
     </script>
 </body>
-</html>
+                                                                   </html>
+                                                                   
