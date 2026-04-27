@@ -1,0 +1,203 @@
+/* Google Fonts for Gaming Feel */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+body {
+    background-color: #0b0c10;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+/* Header & Navbar */
+header {
+    background: linear-gradient(90deg, #1f2833, #0b0c10);
+    padding: 15px 5%;
+    border-bottom: 2px solid #66fcf1;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ff-logo {
+    height: 50px;
+    filter: drop-shadow(0 0 5px #66fcf1);
+}
+
+.brand-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #66fcf1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://wallpaperaccess.com/full/1209278.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero h1 {
+    font-size: 45px;
+    color: #66fcf1;
+    text-shadow: 0 0 15px rgba(102, 252, 241, 0.6);
+}
+
+/* Review Section Styling */
+.reviews-section {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #1f2833;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.reviews-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #45a29e;
+    text-transform: uppercase;
+}
+
+/* Star Input Box */
+.user-rating-box {
+    text-align: center;
+    background: #0b0c10;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    border: 1px dashed #66fcf1;
+}
+
+.stars span {
+    font-size: 30px;
+    cursor: pointer;
+    color: #45a29e;
+    transition: 0.3s;
+}
+
+.stars span:hover {
+    color: #66fcf1;
+    transform: scale(1.2);
+}
+
+/* Review Cards */
+.review-card {
+    background: #0b0c10;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 5px solid #66fcf1;
+    border-radius: 5px;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.review-card strong {
+    color: #66fcf1;
+    font-size: 18px;
+}
+
+.review-card .stars {
+    color: #ffb400; /* Gold color for actual reviews */
+    margin-bottom: 5px;
+}
+
+/* Classes for Show/Hide logic */
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+/* See More Button */
+#see-more-btn {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 12px;
+    background: transparent;
+    color: #66fcf1;
+    border: 2px solid #66fcf1;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.4s;
+}
+
+#see-more-btn:hover {
+    background: #66fcf1;
+    color: #0b0c10;
+    box-shadow: 0 0 20px #66fcf1;
+}
+
+/* Footer Styling */
+footer {
+    background: #0b0c10;
+    padding: 40px 5% 20px;
+    border-top: 1px solid #1f2833;
+    margin-top: 50px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.footer-info h3 {
+    color: #66fcf1;
+    margin-bottom: 15px;
+}
+
+.footer-links {
+    margin: 20px 0;
+}
+
+.footer-links a {
+    color: #c5c6c7;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    color: #66fcf1;
+}
+
+.disclaimer {
+    font-size: 12px;
+    color: #45a29e;
+    margin-top: 20px;
+    border-top: 1px solid #1f2833;
+    padding-top: 10px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .hero h1 { font-size: 30px; }
+    .brand-title { font-size: 18px; }
+  }
