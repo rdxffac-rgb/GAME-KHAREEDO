@@ -32,16 +32,22 @@
 
         .btn-pay-now:active { transform: translateY(4px); box-shadow: 0 2px 0px #3730A3; }
 
-        .billing-item { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px dashed #e2e8f0; }
-        
-        /* UPI Banner Style */
-        .upi-banner {
-            width: 100%;
-            max-width: 280px; /* Adjust as per card width */
-            height: auto;
-            margin: 15px auto 0;
-            display: block;
+        /* Fix for Long Links */
+        .billing-item { 
+            display: flex; 
+            flex-direction: column; /* Stacked labels and values */
+            padding: 14px 0; 
+            border-bottom: 1px dashed #e2e8f0; 
         }
+        
+        .item-label { color: #64748b; font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+        .item-value { 
+            color: #1e293b; font-weight: 800; font-size: 15px; 
+            word-break: break-all; /* Breaks long links into new lines */
+            line-height: 1.4;
+        }
+
+        .upi-banner { width: 100%; max-width: 280px; height: auto; margin: 15px auto 0; display: block; }
     </style>
 </head>
 <body class="bg-gray-50 pb-20">
@@ -53,7 +59,7 @@
             </div>
             <span class="text-2xl font-black tracking-tighter">VipSmm <span class="text-indigo-600">Pay</span></span>
         </div>
-        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Secure 256-bit Encrypted Checkout</p>
+        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest text-center">Secure 256-bit Encrypted Checkout</p>
     </div>
 
     <div class="px-5 max-w-md mx-auto">
@@ -61,14 +67,22 @@
             
             <div class="mb-8">
                 <h3 class="text-gray-400 text-[10px] font-extrabold uppercase tracking-widest mb-4">Billing Summary</h3>
+                
                 <div class="billing-item">
-                    <span class="text-gray-500 font-semibold">Order Item</span>
-                    <span id="finalPlan" class="font-bold text-gray-900 text-right">...</span>
+                    <span class="item-label">Order Item</span>
+                    <span id="finalPlan" class="item-value">...</span>
                 </div>
+                
                 <div class="billing-item">
-                    <span class="text-gray-500 font-semibold">Target Details</span>
-                    <span id="finalTarget" class="font-bold text-indigo-600 text-right">...</span>
+                    <span class="item-label">Target / Account Details</span>
+                    <span id="finalTarget" class="item-value text-indigo-600">...</span>
                 </div>
+
+                <div id="benefitBox" class="mt-4 p-4 bg-indigo-50 rounded-2xl border border-indigo-100 hidden">
+                    <h4 class="text-[10px] font-bold text-indigo-400 uppercase mb-2">Plan Includes:</h4>
+                    <p id="displayBenefits" class="text-xs font-bold text-indigo-900 leading-relaxed"></p>
+                </div>
+
                 <div class="flex justify-between items-center py-6">
                     <span class="text-gray-800 font-black text-lg">Amount Due</span>
                     <span id="finalPrice" class="text-3xl font-black text-gray-900 tracking-tight">₹0</span>
@@ -80,9 +94,9 @@
                     <div id="qrcode" class="mx-auto"></div>
                 </div>
                 
-                <img src="upiicon.png" alt="All UPI Apps Supported" class="upi-banner">
+                <img src="Upiicon.png" alt="All UPI Apps Supported" class="upi-banner">
                 
-                <p class="text-[10px] font-black text-indigo-400 mt-3 italic uppercase">Safe & Instant Payment</p>
+                <p class="text-[10px] font-black text-indigo-400 mt-3 italic uppercase text-center">Safe & Instant Payment</p>
             </div>
 
             <button onclick="openUpiApp()" class="w-full py-5 btn-pay-now text-lg mb-6 flex items-center justify-center space-x-3">
@@ -91,9 +105,9 @@
             </button>
 
             <div class="text-center bg-indigo-50/50 p-4 rounded-2xl border border-indigo-100">
-                <p class="text-xs text-indigo-900 font-semibold leading-relaxed">
+                <p class="text-[10px] text-indigo-900 font-semibold leading-relaxed text-center">
                     <i class="fa-solid fa-circle-notch fa-spin mr-1"></i> 
-                    Once the transaction is successful, you will be automatically redirected to the status page. Please do not close the window.
+                    Once the transaction is successful, you will be automatically redirected to the status page.
                 </p>
             </div>
         </div>
@@ -102,7 +116,6 @@
     </div>
 
     <script>
-        // URL Cleaning Logic
         (function() {
             const path = window.location.pathname;
             if (path.endsWith('.html')) {
@@ -113,19 +126,23 @@
 
         document.getElementById('txnId').innerText = "TXN" + Math.floor(Math.random() * 9999999999);
 
-        // Dynamic Data Fetching
-        const plan = localStorage.getItem('selectedPlan') || "Digital Service";
+        const plan = localStorage.getItem('selectedPlan') || "Premium Service";
         const price = localStorage.getItem('selectedPrice') || "0";
         const target = localStorage.getItem('finalTarget') || "Verify ID";
+        const benefits = localStorage.getItem('planBenefits');
 
         document.getElementById('finalPlan').innerText = plan;
         document.getElementById('finalTarget').innerText = target;
         document.getElementById('finalPrice').innerText = "₹" + price;
 
+        if(benefits) {
+            document.getElementById('benefitBox').classList.remove('hidden');
+            document.getElementById('displayBenefits').innerText = benefits;
+        }
+
         const myUpi = "BHARATPE.8W0U1Q3D0I02347@fbpe";
-        const merchant = "VipSmm Premium Services";
         const paymentNote = encodeURIComponent(`Payment for ${plan} - Target: ${target}`);
-        const upiUrl = `upi://pay?pa=${myUpi}&pn=${encodeURIComponent(merchant)}&am=${price}&cu=INR&tn=${paymentNote}`;
+        const upiUrl = `upi://pay?pa=${myUpi}&pn=VipSmm&am=${price}&cu=INR&tn=${paymentNote}`;
 
         new QRCode(document.getElementById("qrcode"), {
             text: upiUrl,
