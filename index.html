@@ -17,7 +17,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
         body { background-color: var(--light-bg); color: var(--dark-grey); }
 
-        /* Header (No Logo) */
+        /* Header */
         header {
             background-color: #000;
             padding: 15px 5%;
@@ -61,14 +61,13 @@
         .review-card { padding: 20px; border-bottom: 1px solid var(--border-color); display: none; }
         .review-card.visible { display: block; }
         
-        /* Footer & WhatsApp Help */
+        /* Footer */
         footer { background: #111; color: #fff; padding: 50px 20px; text-align: center; margin-top: 80px; }
         .whatsapp-btn {
             display: inline-block; background: #25D366; color: white; padding: 12px 25px;
             border-radius: 50px; text-decoration: none; font-weight: bold; margin: 15px 0;
             font-size: 16px; transition: 0.3s;
         }
-        .whatsapp-btn:hover { background: #128C7E; transform: scale(1.05); }
         .footer-info h3 { color: var(--primary-yellow); margin-bottom: 15px; font-family: 'Oswald'; }
         .footer-links { margin: 25px 0; }
         .footer-links a { color: #fff; margin: 0 12px; font-size: 13px; text-decoration: none; opacity: 0.8; }
@@ -110,6 +109,7 @@
             <h3>GAME KHARIDO INDIA</h3>
             <p>24/7 WhatsApp Support:</p>
             <a href="https://wa.me/919530004641" class="whatsapp-btn">Get Help</a>
+            <p>Email: support@gamekharido.com</p>
             <p>Office: Tower A, Digital Heights, Jaipur, Rajasthan</p>
             <p>GSTIN: 08BKDPP8890A1Z2 (Verified Merchant)</p>
         </div>
@@ -122,13 +122,16 @@
     </footer>
 
     <script>
-        // Buffering Logic (5 Seconds)
+        // Buffering & Storage Logic
         function startLoading() {
-            const uid = document.getElementById('uid-input').value;
-            if (uid.length < 5) {
+            const uidInput = document.getElementById('uid-input').value;
+            if (uidInput.length < 5) {
                 alert("Please enter a valid Player ID");
                 return;
             }
+
+            // Storage mein UID save karna
+            localStorage.setItem("playerUID", uidInput);
 
             const btn = document.getElementById('submit-btn');
             const loader = document.getElementById('loader');
@@ -137,11 +140,11 @@
             loader.style.display = 'block';
 
             setTimeout(() => {
-                window.location.href = "ffdiamond.html"; // Next page redirection
-            }, 5000); // 5 Seconds delay
+                window.location.href = "ffdiamond.html"; 
+            }, 5000); 
         }
 
-        // Star Rating & Review Setup
+        // Reviews & UI Logic (Pehele jaisa hi)
         function rate(n) {
             const stars = document.querySelectorAll('.stars-input span');
             stars.forEach((s, idx) => s.classList.toggle('active', idx < n));
@@ -159,7 +162,6 @@
             {n:"Rohan King", s:"⭐⭐⭐⭐", t:"Mene gun max kr li, ab maza aayega khelne me."},
             {n:"Nitin FF", s:"⭐⭐⭐⭐⭐", t:"Bhai instant delivery hai, thnx Game Kharido."},
             {n:"Sahil Gamer", s:"⭐⭐⭐⭐⭐", t:"Trusted site, mene 5000 diamonds liye the."}
-            // ... Yahan 50 tak aap manually add kar sakte hain
         ];
 
         const reviewList = document.getElementById('review-list');
