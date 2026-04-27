@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VipSmm Premium | Professional Panel</title>
+    <title>VipSmm Premium | Next-Gen Panel</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -16,7 +16,7 @@
             overflow-x: hidden;
         }
 
-        /* --- Navigation Drawer Styles --- */
+        /* Side Navigation Drawer */
         #sideNav {
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 100;
@@ -34,7 +34,7 @@
             color: #4b5563;
             font-weight: 600;
             border-bottom: 1px solid #f3f4f6;
-            transition: background 0.2s;
+            cursor: pointer;
         }
 
         .nav-link i {
@@ -44,9 +44,7 @@
             text-align: center;
         }
 
-        .nav-link:active { background: #f9fafb; }
-
-        /* --- 3D Design Styles --- */
+        /* 3D Premium Card Logic */
         .premium-3d-card {
             background: white;
             border-radius: 30px;
@@ -54,11 +52,9 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -4px 0 rgba(0, 0, 0, 0.02);
             transition: all 0.3s ease;
         }
-
-        .premium-3d-card:hover { transform: translateY(-5px); }
 
         .jio-border { border-left: 6px solid #005AFF; }
         .airtel-border { border-left: 6px solid #E40000; }
@@ -67,6 +63,7 @@
         .yt-border { border-left: 6px solid #FF0000; }
         .insta-border { border-left: 6px solid #E1306C; }
 
+        /* Premium 3D Button */
         .premium-3d-button {
             background: linear-gradient(180deg, #6366F1 0%, #4F46E5 100%);
             color: white;
@@ -82,9 +79,31 @@
             display: flex; align-items: center; justify-content: center;
             margin-right: 15px;
         }
+
+        /* Full Screen Alert Styling */
+        #customAlert {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 200;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
     </style>
 </head>
-<body class="bg-gray-50 pb-10">
+<body>
+
+    <div id="customAlert">
+        <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+            <i class="fa-solid fa-box-open text-gray-400 text-4xl"></i>
+        </div>
+        <h2 class="text-2xl font-extrabold text-gray-800">No order available</h2>
+        <p class="text-gray-500 mt-2">Place a order and check.</p>
+    </div>
 
     <div id="navOverlay" class="fixed inset-0 bg-black/40 opacity-0 pointer-events-none transition-opacity"></div>
 
@@ -97,19 +116,19 @@
         </div>
 
         <nav class="mt-4">
-            <a href="#" class="nav-link text-indigo-600 bg-indigo-50/50">
+            <div onclick="toggleMenu()" class="nav-link text-indigo-600 bg-indigo-50/50">
                 <i class="fa-solid fa-house"></i> Home
-            </a>
-            <a href="#" class="nav-link">
+            </div>
+            <div onclick="showOrders()" class="nav-link">
                 <i class="fa-solid fa-box-open text-emerald-500"></i> My Orders
-            </a>
-            <a href="#" class="nav-link">
+            </div>
+            <div onclick="shareReferral()" class="nav-link">
                 <i class="fa-solid fa-share-nodes text-blue-500"></i> Refer
-            </a>
-            <a href="#" class="nav-link">
+            </div>
+            <div onclick="contactUs()" class="nav-link">
                 <i class="fa-solid fa-phone text-rose-500"></i> Contact Us
-            </a>
-            <a href="#" class="nav-link">
+            </div>
+            <a href="about.html" class="nav-link">
                 <i class="fa-solid fa-circle-info text-gray-400"></i> About
             </a>
         </nav>
@@ -122,20 +141,20 @@
             </div>
             <span class="text-3xl font-extrabold tracking-tighter text-gray-900">Vip<span class="text-indigo-600">Smm</span></span>
         </div>
-        <button id="menuBtn" class="bg-gray-100 p-3 rounded-2xl active:scale-90 transition-transform">
+        <button onclick="toggleMenu()" class="bg-gray-100 p-3 rounded-2xl active:scale-90 transition-transform">
             <i class="fa-solid fa-bars-staggered text-gray-700 text-xl"></i>
         </button>
     </nav>
 
     <div class="grid grid-cols-2 gap-4 px-5 mt-6">
-        <a href="#" class="flex items-center justify-center space-x-2 bg-emerald-50 border border-emerald-100 p-4 rounded-[1.8rem] shadow-sm">
+        <div onclick="contactUs()" class="flex items-center justify-center space-x-2 bg-emerald-50 border border-emerald-100 p-4 rounded-[1.8rem] shadow-sm cursor-pointer active:scale-95">
             <i class="fa-brands fa-whatsapp text-emerald-600 text-xl"></i>
             <span class="font-bold text-emerald-800 text-sm">24/7 Support</span>
-        </a>
-        <a href="#" class="flex items-center justify-center space-x-2 bg-rose-50 border border-rose-100 p-4 rounded-[1.8rem] shadow-sm">
+        </div>
+        <div class="flex items-center justify-center space-x-2 bg-rose-50 border border-rose-100 p-4 rounded-[1.8rem] shadow-sm cursor-pointer active:scale-95">
             <i class="fa-brands fa-youtube text-rose-600 text-xl"></i>
             <span class="font-bold text-rose-800 text-sm">Watch Tutorial</span>
-        </a>
+        </div>
     </div>
 
     <div class="px-5 mt-10 space-y-5">
@@ -172,37 +191,59 @@
         </div>
     </div>
 
-    <div class="bg-[#0f172a] text-gray-400 mt-20 rounded-t-[3rem] px-6 py-12">
-        <div class="flex justify-center mb-10"><div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center"><span class="text-indigo-600 font-extrabold text-3xl">V</span></div></div>
-        <div class="text-center space-y-4 max-w-2xl mx-auto border-t border-gray-800 pt-10">
-            <p class="text-white font-bold">VipSmm Global Services Private Limited</p>
-            <p class="text-xs">702, Trade World, Kamala Mills, Mumbai, Maharashtra - 400013.</p>
-            <p class="text-xs">GSTIN: 27AAVCS4321B1Z0 | CIN: U72900MH2024PTC987654</p>
+    <div class="bg-[#0f172a] text-gray-400 mt-20 rounded-t-[3rem] px-6 py-12 shadow-inner">
+        <div class="flex justify-center mb-10">
+            <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-lg">
+                <span class="text-indigo-600 font-extrabold text-3xl">V</span>
+            </div>
+            <span class="text-3xl font-extrabold text-white ml-2">Vip<span class="text-gray-500">Smm</span></span>
         </div>
-        <p class="text-center text-[10px] mt-10">© 2026 VipSmm. All Rights Reserved.</p>
+        <div class="text-center space-y-4 max-w-2xl mx-auto border-t border-gray-800 pt-10">
+            <p class="text-white font-bold text-lg">VipSmm Global Services Private Limited</p>
+            <p class="text-sm">702, 7th Floor, Trade World - C Wing, Kamala Mills Compound, Senapati Bapat Marg, Lower Parel, Mumbai, Maharashtra - 400013.</p>
+            <p class="text-sm">CIN: U72900MH2024PTC987654 | GSTIN: 27AAVCS4321B1Z0</p>
+            <p class="text-sm">Corporate Number: +91 9530004641</p>
+        </div>
+        <div class="mt-12 border-t border-gray-800 pt-8 text-center">
+            <div class="flex flex-wrap justify-center gap-6 mb-6 text-sm font-medium text-indigo-400">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Refund Policy</a>
+            </div>
+            <p class="text-xs text-gray-600">© 2026 VipSmm. All Rights Reserved.</p>
+        </div>
     </div>
 
     <script>
-        const menuBtn = document.getElementById('menuBtn');
         const sideNav = document.getElementById('sideNav');
         const navOverlay = document.getElementById('navOverlay');
+        const customAlert = document.getElementById('customAlert');
 
         function toggleMenu() {
             const isOpen = sideNav.style.transform === 'translateX(0px)';
-            if (isOpen) {
-                sideNav.style.transform = 'translateX(-100%)';
-                navOverlay.style.opacity = '0';
-                navOverlay.style.pointerEvents = 'none';
-            } else {
-                sideNav.style.transform = 'translateX(0px)';
-                navOverlay.style.opacity = '1';
-                navOverlay.style.pointerEvents = 'auto';
-            }
+            sideNav.style.transform = isOpen ? 'translateX(-100%)' : 'translateX(0px)';
+            navOverlay.style.opacity = isOpen ? '0' : '1';
+            navOverlay.style.pointerEvents = isOpen ? 'none' : 'auto';
         }
 
-        menuBtn.addEventListener('click', toggleMenu);
         navOverlay.addEventListener('click', toggleMenu);
-    </script>
 
+        function showOrders() {
+            toggleMenu();
+            customAlert.style.display = 'flex';
+            setTimeout(() => {
+                customAlert.style.display = 'none';
+            }, 3000);
+        }
+
+        function contactUs() {
+            window.location.href = "https://wa.me/919530004641";
+        }
+
+        function shareReferral() {
+            const message = encodeURIComponent("Check this out! I just ordered from here. You should try it too—they provide the fastest and most original followers and social services! 🚀");
+            window.location.href = `whatsapp://send?text=${message}`;
+        }
+    </script>
 </body>
 </html>
