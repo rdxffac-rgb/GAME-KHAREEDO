@@ -75,11 +75,31 @@
             border: none;
             outline: none;
             transition: transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
         }
 
         .premium-3d-button:active {
             transform: translateY(2px);
             box-shadow: 0 2px 0px #3730A3;
+        }
+
+        /* --- LOADING SPINNER STYLE --- */
+        .btn-loader {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ffffff;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: none;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .icon-container {
@@ -174,57 +194,65 @@
                 <div class="icon-container bg-[#005AFF] italic text-white font-black">Jio</div>
                 <div><h3 class="font-extrabold">Jio</h3><p class="text-xs text-gray-500">Recharge Unlimited 5G</p></div>
             </div>
-            <button onclick="window.location.href='jioplan.html'" class="premium-3d-button">Plans</button>
+            <button onclick="handleRedirect(this, 'jioplan.html')" class="premium-3d-button">
+                <span class="btn-text">Plans</span>
+                <span class="btn-loader"></span>
+            </button>
         </div>
 
         <div class="premium-3d-card airtel-border">
             <div class="flex items-center">
-                <div class="icon-container bg-[#E40000] text-white">
-                    <i class="fa-solid fa-tower-cell text-2xl"></i>
-                </div>
+                <div class="icon-container bg-[#E40000] text-white"><i class="fa-solid fa-tower-cell text-2xl"></i></div>
                 <div><h3 class="font-extrabold">Airtel</h3><p class="text-xs text-gray-500">Recharge Unlimited 5G & 4G</p></div>
             </div>
-            <button onclick="window.location.href='airtelplan.html'" class="premium-3d-button">Plans</button>
+            <button onclick="handleRedirect(this, 'airtelplan.html')" class="premium-3d-button">
+                <span class="btn-text">Plans</span>
+                <span class="btn-loader"></span>
+            </button>
         </div>
 
         <div class="premium-3d-card insta-border">
             <div class="flex items-center">
-                <div class="icon-container bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 text-white">
-                    <i class="fa-brands fa-instagram text-2xl"></i>
-                </div>
+                <div class="icon-container bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 text-white"><i class="fa-brands fa-instagram text-2xl"></i></div>
                 <div><h3 class="font-extrabold">Instagram</h3><p class="text-xs text-gray-500">Followers & Likes</p></div>
             </div>
-            <button onclick="window.location.href='instagramplan.html'" class="premium-3d-button">Plans</button>
+            <button onclick="handleRedirect(this, 'instagramplan.html')" class="premium-3d-button">
+                <span class="btn-text">Plans</span>
+                <span class="btn-loader"></span>
+            </button>
         </div>
 
         <div class="premium-3d-card yt-border">
             <div class="flex items-center">
-                <div class="icon-container bg-red-600 text-white">
-                    <i class="fa-brands fa-youtube text-2xl"></i>
-                </div>
+                <div class="icon-container bg-red-600 text-white"><i class="fa-brands fa-youtube text-2xl"></i></div>
                 <div><h3 class="font-extrabold">YouTube</h3><p class="text-xs text-gray-500">Watch-time & Subs</p></div>
             </div>
-            <button onclick="window.location.href='youtubeplan.html'" class="premium-3d-button">Plans</button>
+            <button onclick="handleRedirect(this, 'youtubeplan.html')" class="premium-3d-button">
+                <span class="btn-text">Plans</span>
+                <span class="btn-loader"></span>
+            </button>
         </div>
 
         <div class="premium-3d-card fb-border">
             <div class="flex items-center">
-                <div class="icon-container bg-[#1877F2] text-white">
-                    <i class="fa-brands fa-facebook-f text-2xl"></i>
-                </div>
+                <div class="icon-container bg-[#1877F2] text-white"><i class="fa-brands fa-facebook-f text-2xl"></i></div>
                 <div><h3 class="font-extrabold">Facebook</h3><p class="text-xs text-gray-500">Followers & Watch-time</p></div>
             </div>
-            <button onclick="window.location.href='facebookplan.html'" class="premium-3d-button">Plans</button>
+            <button onclick="handleRedirect(this, 'facebookplan.html')" class="premium-3d-button">
+                <span class="btn-text">Plans</span>
+                <span class="btn-loader"></span>
+            </button>
         </div>
 
         <div class="premium-3d-card amazon-border">
             <div class="flex items-center">
-                <div class="icon-container bg-white border text-sky-600">
-                    <i class="fa-brands fa-amazon text-2xl"></i>
-                </div>
+                <div class="icon-container bg-white border text-sky-600"><i class="fa-brands fa-amazon text-2xl"></i></div>
                 <div><h3 class="font-extrabold">Amazon Prime</h3><p class="text-xs text-gray-500">Monthly Membership</p></div>
             </div>
-            <button onclick="window.location.href='amazonprime.html'" class="premium-3d-button">Plans</button>
+            <button onclick="handleRedirect(this, 'amazonprime.html')" class="premium-3d-button">
+                <span class="btn-text">Plans</span>
+                <span class="btn-loader"></span>
+            </button>
         </div>
     </div>
 
@@ -282,11 +310,42 @@
             window.location.href = `whatsapp://send?text=${message}`;
         }
 
-        // Optimized Clean URL Logic
+        // --- LOADING & REDIRECT LOGIC ---
+        function handleRedirect(button, url) {
+            const text = button.querySelector('.btn-text');
+            const loader = button.querySelector('.btn-loader');
+
+            text.style.display = 'none';
+            loader.style.display = 'block';
+            button.style.pointerEvents = 'none';
+
+            setTimeout(() => {
+                const cleanUrl = url.replace('.html', '');
+                history.pushState(null, '', cleanUrl);
+                window.location.href = url;
+            }, 2000);
+        }
+
+        // --- FIX FOR BACK BUTTON (BUFFRING RESET) ---
+        window.addEventListener('pageshow', function (event) {
+            // Agar page "Back" button se load ho raha hai (persisted: true)
+            // toh saare buttons ko reset kar do
+            const buttons = document.querySelectorAll('.premium-3d-button');
+            buttons.forEach(btn => {
+                const text = btn.querySelector('.btn-text');
+                const loader = btn.querySelector('.btn-loader');
+                if (text && loader) {
+                    text.style.display = 'block';
+                    loader.style.display = 'none';
+                    btn.style.pointerEvents = 'auto';
+                }
+            });
+        });
+
         (function() {
             const path = window.location.pathname;
             if (path.endsWith('.html')) {
-                const cleanPath = path.slice(0, -5); // Removes '.html'
+                const cleanPath = path.slice(0, -5);
                 window.history.replaceState(null, '', cleanPath);
             }
         })();
