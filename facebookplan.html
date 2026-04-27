@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,16 +8,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
-        
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; color: #1a1a1a; }
         .premium-3d-card { background: white; border-radius: 30px; padding: 20px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); border-left: 6px solid #1877F2; margin-bottom: 20px; transition: 0.3s; }
         .input-3d { background: white; border-radius: 20px; border: 2px solid #f1f5f9; transition: all 0.3s ease; }
         .input-3d:focus { border-color: #1877F2; box-shadow: 0 0 0 4px rgba(24, 119, 242, 0.1); outline: none; }
-        
-        /* Error Shake */
         .error-shake { border-color: #ef4444 !important; animation: shake 0.2s ease-in-out 2; }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
-
         .btn-3d { background: linear-gradient(180deg, #1877F2 0%, #166fe5 100%); color: white; border-radius: 16px; font-weight: 700; box-shadow: 0 4px 0px #0e4f9f; transition: all 0.1s ease; display: flex; align-items: center; justify-content: center; }
         .btn-3d:active { transform: translateY(2px); box-shadow: 0 2px 0px #0e4f9f; }
         .loader { border: 3px solid rgba(255,255,255,0.3); border-top: 3px solid #fff; border-radius: 50%; width: 18px; height: 18px; animation: spin 1s linear infinite; display: none; margin-right: 8px; }
@@ -28,9 +24,7 @@
 
     <nav class="flex items-center justify-between px-6 py-5 sticky top-0 bg-white/90 backdrop-blur-md z-50 shadow-sm">
         <div class="flex items-center space-x-3">
-            <a href="index.html" class="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center">
-                <i class="fa-solid fa-arrow-left text-gray-600"></i>
-            </a>
+            <a href="index.html" class="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center"><i class="fa-solid fa-arrow-left text-gray-600"></i></a>
             <span class="text-2xl font-extrabold tracking-tighter">Facebook <span class="text-[#1877F2]">Boost</span></span>
         </div>
     </nav>
@@ -58,9 +52,46 @@
                     </div>
                     <div class="text-right">
                         <span class="text-2xl font-black text-[#1877F2]">₹49</span>
-                        <button onclick="buyNow(this, 'Facebook (1000 Followers)', 49, 'Indian Real Profiles, Non-drop Guarantee, Lifetime Support, 24h Delivery')" class="block mt-2 px-6 py-2 btn-3d text-sm">
-                            <div class="loader"></div><span>Buy</span>
-                        </button>
+                        <button onclick="buyNow(this, 'Facebook 1000 Followers', 49, 'Real Indian Profiles, High Quality, Lifetime Non-drop, Fast Delivery')" class="block mt-2 px-6 py-2 btn-3d text-sm"><div class="loader"></div><span>Buy</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="premium-3d-card">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="font-extrabold text-lg">5000 Followers</h3>
+                        <p class="text-xs text-gray-500">Indian Real Non-drop Followers</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-2xl font-black text-[#1877F2]">₹129</span>
+                        <button onclick="buyNow(this, 'Facebook 5000 Followers', 129, 'Real Indian Audience, Best for Growth, Non-drop Guarantee, Safe Profile Boost')" class="block mt-2 px-6 py-2 btn-3d text-sm"><div class="loader"></div><span>Buy</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="premium-3d-card">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="font-extrabold text-lg">2000 Likes</h3>
+                        <p class="text-xs text-gray-500">Indian Real Non-drop Likes</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-2xl font-black text-[#1877F2]">₹35</span>
+                        <button onclick="buyNow(this, 'Facebook 2000 Likes', 35, 'Instant Real Likes, Indian Profiles, Permanent on Post, Boost Post Reach')" class="block mt-2 px-6 py-2 btn-3d text-sm"><div class="loader"></div><span>Buy</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="premium-3d-card">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="font-extrabold text-lg">100 Comments</h3>
+                        <p class="text-xs text-gray-500">Indian Real Comments</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-2xl font-black text-[#1877F2]">₹29</span>
+                        <button onclick="buyNow(this, 'Facebook 100 Comments', 29, 'Custom/Random Real Comments, Real Indian Users, High Engagement, Organic Look')" class="block mt-2 px-6 py-2 btn-3d text-sm"><div class="loader"></div><span>Buy</span></button>
                     </div>
                 </div>
             </div>
@@ -69,13 +100,11 @@
                 <div class="flex justify-between items-start">
                     <div>
                         <h3 class="font-extrabold text-lg">5000 Views</h3>
-                        <p class="text-xs text-gray-500">Boost views on Facebook videos/posts</p>
+                        <p class="text-xs text-gray-500">Boost views on videos/posts</p>
                     </div>
                     <div class="text-right">
                         <span class="text-2xl font-black text-[#1877F2]">₹45</span>
-                        <button onclick="buyNow(this, 'Facebook (5000 Views)', 45, 'High Retention Views, Improves Algorithm Ranking, Viral Potential, Safe Delivery')" class="block mt-2 px-6 py-2 btn-3d text-sm">
-                            <div class="loader"></div><span>Buy</span>
-                        </button>
+                        <button onclick="buyNow(this, 'Facebook 5000 Views', 45, 'High Retention Views, Improves Ranking, Safe on Account, Viral Potential')" class="block mt-2 px-6 py-2 btn-3d text-sm"><div class="loader"></div><span>Buy</span></button>
                     </div>
                 </div>
             </div>
@@ -88,9 +117,7 @@
                     </div>
                     <div class="text-right">
                         <span class="text-2xl font-black text-indigo-600">₹899</span>
-                        <button onclick="buyNow(this, 'Facebook (100K Branding)', 899, 'Professional Branding Pack, Verified Look, Global Real Audience, Ultra Fast Growth')" class="block mt-2 px-6 py-2 btn-3d text-sm" style="background:#4f46e5; box-shadow: 0 4px 0 #3730a3;">
-                            <div class="loader"></div><span>Buy</span>
-                        </button>
+                        <button onclick="buyNow(this, 'Facebook 100K Branding', 899, 'Mega Branding Pack, Real Profiles, Verified Feel, Fastest Growth Guarantee')" class="block mt-2 px-6 py-2 btn-3d text-sm" style="background:#4f46e5; box-shadow: 0 4px 0 #3730a3;"><div class="loader"></div><span>Buy</span></button>
                     </div>
                 </div>
             </div>
@@ -100,55 +127,37 @@
 
     <script>
         let isConfirmed = false;
-
         function verifyFbLink() {
             const link = document.getElementById('fbLink').value;
             const loader = document.getElementById('confirmLoader');
             const btnText = document.getElementById('btnText');
-            const input = document.getElementById('fbLink');
-
             if (link.includes('facebook.com') || link.includes('fb.')) {
-                input.classList.remove('error-shake');
                 loader.style.display = 'block';
-                btnText.innerText = "Verifying Link...";
-
+                btnText.innerText = "Verifying...";
                 setTimeout(() => {
                     loader.style.display = 'none';
                     btnText.innerText = "Account Verified";
-                    document.getElementById('verifyBtn').style.background = "#059669"; 
+                    document.getElementById('verifyBtn').style.background = "#059669";
                     document.getElementById('verifyBtn').style.boxShadow = "0 4px 0px #065f46";
-                    
                     isConfirmed = true;
                     localStorage.setItem('fbTarget', link);
                     document.getElementById('plansSection').classList.remove('hidden');
                     document.getElementById('plansSection').scrollIntoView({ behavior: 'smooth' });
                 }, 2000);
-            } else {
-                input.classList.add('error-shake');
-            }
+            } else { document.getElementById('fbLink').classList.add('error-shake'); }
         }
 
         function buyNow(btn, plan, price, benefits) {
-            if(!isConfirmed) {
-                document.getElementById('fbLink').classList.add('error-shake');
-                document.getElementById('verifyBox').scrollIntoView({behavior: 'smooth'});
-                return;
-            }
-
+            if(!isConfirmed) { document.getElementById('verifyBox').scrollIntoView({behavior: 'smooth'}); return; }
             const loader = btn.querySelector('.loader');
             const span = btn.querySelector('span');
             loader.style.display = 'block';
             span.innerText = "Processing...";
-
-            // Setting Data for Payment Page
             localStorage.setItem('selectedPlan', plan);
             localStorage.setItem('selectedPrice', price);
             localStorage.setItem('planBenefits', benefits);
             localStorage.setItem('finalTarget', localStorage.getItem('fbTarget'));
-
-            setTimeout(() => {
-                window.location.href = "payment.html"; 
-            }, 2000);
+            setTimeout(() => { window.location.href = "payment.html"; }, 2000);
         }
 
         window.addEventListener('pageshow', function () {
