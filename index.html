@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="google-site-verification" content="aHx2pnoUrtIA_TE67GcP7O6hQQNONlLeT1zc935DyW4" />
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VipSmm Premium | Next-Gen Panel</title>
@@ -328,8 +330,6 @@
 
         // --- FIX FOR BACK BUTTON (BUFFRING RESET) ---
         window.addEventListener('pageshow', function (event) {
-            // Agar page "Back" button se load ho raha hai (persisted: true)
-            // toh saare buttons ko reset kar do
             const buttons = document.querySelectorAll('.premium-3d-button');
             buttons.forEach(btn => {
                 const text = btn.querySelector('.btn-text');
