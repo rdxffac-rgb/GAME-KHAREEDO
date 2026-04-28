@@ -126,7 +126,6 @@
         }
         .btn-submit:active { transform: translateY(2px); box-shadow: 0 2px 0px #3730A3; }
 
-        /* Review Cards */
         .review-card {
             background: white;
             border: 1px solid #f1f5f9;
@@ -139,7 +138,20 @@
         .time-ago { font-size: 12px; color: var(--text-muted); float: right; }
         .review-text { margin: 12px 0; font-size: 15px; color: #475569; line-height: 1.5; }
 
-        /* Reply Box Styling */
+        .liked-by-admin {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            background: #eef2ff;
+            width: fit-content;
+            padding: 3px 10px;
+            border-radius: 10px;
+        }
+
         .official-reply {
             background: var(--reply-bg);
             border-radius: 16px;
@@ -259,6 +271,15 @@
         "Hum apni service ko aur sudharenge taaki aap next time 5 star dein."
     ];
 
+    // --- NEW TIME POOL FOR REALISTIC HISTORY ---
+    const timesPool = [
+        "1 hour ago", "5 hours ago", "12 hours ago", 
+        "1 day ago", "3 days ago", "5 days ago", 
+        "1 week ago", "2 weeks ago", 
+        "1 month ago", "2 months ago", "5 months ago", "9 months ago",
+        "1 year ago"
+    ];
+
     let usedCombinations = new Set();
 
     function getStars() {
@@ -280,15 +301,20 @@
         do {
             name = firstNames[Math.floor(Math.random() * firstNames.length)] + " " + lastNames[Math.floor(Math.random() * lastNames.length)];
             text = commentsPool[Math.floor(Math.random() * commentsPool.length)];
-            time = "Today at " + Math.floor(Math.random() * 12 + 1) + ":" + Math.floor(Math.random() * 59) + " PM";
+            // SELECT RANDOM TIME FROM 1 YEAR TO 1 HOUR
+            time = timesPool[Math.floor(Math.random() * timesPool.length)];
             key = name + text;
         } while (usedCombinations.has(key));
 
         usedCombinations.add(key);
         const starData = getStars();
         
-        // Logic for 1 in 10 random reply
-        const shouldReply = Math.random() < 0.25; // 25% chance for visual variety
+        let likedBadgeHTML = '';
+        if (starData.count === 5 && Math.random() < 0.05) { 
+            likedBadgeHTML = `<div class="liked-by-admin"><i class="fa-solid fa-heart"></i> Liked by VIPSMM</div>`;
+        }
+
+        const shouldReply = Math.random() < 0.20; 
         let replyHTML = '';
         if (shouldReply) {
             const replyText = starData.count === 5 
@@ -304,7 +330,7 @@
                 </div>`;
         }
 
-        return { name, time, text, starsHTML: starData.html, replyHTML, likes: Math.floor(Math.random() * 1500) + 100 };
+        return { name, time, text, starsHTML: starData.html, likedBadgeHTML, replyHTML, likes: Math.floor(Math.random() * 1500) + 100 };
     }
 
     const stars = document.querySelectorAll('.star-input i');
@@ -336,6 +362,7 @@
             div.innerHTML = `
                 <div><span class="user-name">${r.name}</span><span class="time-ago">${r.time}</span></div>
                 <div style="color:var(--star-color); font-size:10px; margin:5px 0;">${r.starsHTML}</div>
+                ${r.likedBadgeHTML}
                 <p class="review-text">${r.text}</p>
                 ${r.replyHTML}
                 <div class="actions">
