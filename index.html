@@ -21,6 +21,7 @@
         .yt-border { border-left: 6px solid #FF0000; }
         .insta-border { border-left: 6px solid #E1306C; }
         .premium-3d-button { background: linear-gradient(180deg, #6366F1 0%, #4F46E5 100%); color: white; padding: 10px 24px; border-radius: 16px; font-weight: 700; box-shadow: 0 4px 0px #3730A3; cursor: pointer; border: none; outline: none; transition: transform 0.1s; display: flex; align-items: center; justify-content: center; min-width: 100px; }
+        .premium-3d-button:active { transform: translateY(2px); box-shadow: 0 2px 0px #3730A3; }
         .btn-loader { width: 18px; height: 18px; border: 2px solid #ffffff; border-bottom-color: transparent; border-radius: 50%; display: none; animation: rotation 1s linear infinite; }
         @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .icon-container { width: 55px; height: 55px; border-radius: 18px; display: flex; align-items: center; justify-content: center; margin-right: 15px; }
@@ -54,7 +55,7 @@
         <div class="premium-3d-card jio-border">
             <div class="flex items-center">
                 <div class="icon-container bg-[#005AFF] italic text-white font-black">Jio</div>
-                <div><h3 class="font-extrabold">Jio</h3><p class="text-xs text-gray-500">Recharge Unlimited 5G</p></div>
+                <div><h3 class="font-extrabold">Jio 5G</h3><p class="text-xs text-gray-500">Recharge Unlimited 5G</p></div>
             </div>
             <button onclick="handleRedirect(this, 'jioplan.html')" class="premium-3d-button"><span class="btn-text">Plans</span><span class="btn-loader"></span></button>
         </div>
@@ -62,7 +63,7 @@
         <div class="premium-3d-card airtel-border">
             <div class="flex items-center">
                 <div class="icon-container bg-[#E40000] text-white"><i class="fa-solid fa-tower-cell text-2xl"></i></div>
-                <div><h3 class="font-extrabold">Airtel</h3><p class="text-xs text-gray-500">Recharge Unlimited 5G & 4G</p></div>
+                <div><h3 class="font-extrabold">Airtel 5G</h3><p class="text-xs text-gray-500">Recharge Unlimited 5G & 4G</p></div>
             </div>
             <button onclick="handleRedirect(this, 'airtelplan.html')" class="premium-3d-button"><span class="btn-text">Plans</span><span class="btn-loader"></span></button>
         </div>
@@ -111,21 +112,13 @@
             <p class="text-sm">CIN: U72900MH2024PTC987654 | GSTIN: 27AAVCS4321B1Z0</p>
             <p class="text-sm">Corporate Number: +91 9530004641</p>
         </div>
-        <div class="mt-12 border-t border-gray-800 pt-8 text-center text-xs">
-            <div class="flex flex-wrap justify-center gap-6 mb-6 text-sm font-medium text-indigo-400">
-                <a href="#">Privacy Policy</a> <a href="#">Terms of Service</a> <a href="#">Refund Policy</a>
-            </div>
-            <p>© 2026 VipSmm. All Rights Reserved.</p>
-        </div>
     </div>
 
     <script>
-        function toggleMenu() {
-            // Sidebar menu toggle code...
-        }
-        function handleRedirect(btn, url) {
-            const text = btn.querySelector('.btn-text');
-            const loader = btn.querySelector('.btn-loader');
+        // JS logic remains same
+        function handleRedirect(button, url) {
+            const text = button.querySelector('.btn-text');
+            const loader = button.querySelector('.btn-loader');
             text.style.display = 'none'; loader.style.display = 'block';
             setTimeout(() => { window.location.href = url; }, 2000);
         }
