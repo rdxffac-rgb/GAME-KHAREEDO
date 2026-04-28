@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Feedback & Guide | VIP SMM SHOP</title>
+    <title>Customer Feedback | VIP SMM SHOP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* LIGHT THEME TO MATCH YOUR WEBSITE */
         :root {
-            --primary-bg: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.6);
-            --accent-color: #38bdf8;
+            --primary-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --accent-color: #4f46e5; /* Indigo */
             --star-color: #fbbf24;
-            --text-main: #f1f5f9;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
         }
 
         body {
-            background: radial-gradient(circle at top, #1e293b, #0f172a);
+            background-color: var(--primary-bg);
             color: var(--text-main);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             margin: 0;
             padding: 20px;
             display: flex;
@@ -26,155 +28,122 @@
             min-height: 100vh;
         }
 
-        /* Glassmorphism Container */
         .rating-container {
             width: 100%;
             max-width: 650px;
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 24px;
+            border-radius: 30px;
             padding: 30px;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             margin-bottom: 50px;
+            border: 1px solid #e2e8f0;
         }
 
-        h2 { text-align: center; margin-bottom: 20px; font-size: 26px; letter-spacing: 1px; }
+        h2 { text-align: center; margin-bottom: 25px; font-weight: 800; color: #0f172a; }
 
-        /* --- VIDEO SECTION ADDED --- */
+        /* Video Section */
         .video-guide-section {
             width: 100%;
             margin-bottom: 35px;
-            background: rgba(0,0,0,0.4);
+            background: #f1f5f9;
             padding: 15px;
-            border-radius: 18px;
-            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 20px;
         }
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
-            border-radius: 12px;
+            border-radius: 15px;
         }
         .video-container iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-        .video-title {
-            text-align: center;
-            font-size: 16px;
-            margin-bottom: 12px;
-            color: var(--accent-color);
-            font-weight: 600;
-            display: block;
+            top: 0; left: 0; width: 100%; height: 100%; border: 0;
         }
 
-        /* Star Input Section */
+        /* Star Input */
         .star-input {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 15px;
             font-size: 35px;
             cursor: pointer;
             margin-bottom: 25px;
         }
-        .star-input i { color: #334155; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .star-input i.active { color: var(--star-color); text-shadow: 0 0 15px rgba(251, 191, 36, 0.5); transform: scale(1.2); }
+        .star-input i { color: #e2e8f0; transition: 0.3s; }
+        .star-input i.active { color: var(--star-color); transform: scale(1.1); }
 
-        /* Feedback Form Area */
+        /* Form */
         #feedback-box {
             display: none;
-            background: rgba(15, 23, 42, 0.5);
+            background: #f8fafc;
             padding: 20px;
-            border-radius: 15px;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
             margin-bottom: 30px;
-            border: 1px dashed rgba(56, 189, 248, 0.3);
-            animation: slideDown 0.4s ease-out;
         }
-        @keyframes slideDown { from { opacity:0; transform: translateY(-20px); } to { opacity:1; transform: translateY(0); } }
-
         input, textarea {
             width: 100%;
-            background: #0f172a;
-            border: 1px solid #334155;
-            padding: 14px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 15px;
             margin: 10px 0;
-            border-radius: 10px;
-            color: white;
-            font-size: 15px;
-            outline: none;
+            border-radius: 12px;
+            color: var(--text-main);
+            box-sizing: border-box;
         }
-        input:focus, textarea:focus { border-color: var(--accent-color); }
 
         .btn-submit {
-            background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+            background: linear-gradient(180deg, #6366F1 0%, #4F46E5 100%);
             color: white;
             border: none;
             width: 100%;
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 16px;
             font-weight: 700;
             cursor: pointer;
-            text-transform: uppercase;
-            transition: 0.3s;
-            margin-top: 10px;
+            box-shadow: 0 4px 0px #3730A3;
         }
-        .btn-submit:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3); }
+        .btn-submit:active { transform: translateY(2px); box-shadow: 0 2px 0px #3730A3; }
 
-        /* Loader */
-        .loader { display: none; text-align: center; padding: 30px; }
+        /* Review Cards */
+        .review-card {
+            background: white;
+            border: 1px solid #f1f5f9;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .user-name { font-weight: 700; color: #1e293b; }
+        .time-ago { font-size: 12px; color: var(--text-muted); float: right; }
+        .review-text { margin: 12px 0; font-size: 15px; color: #475569; line-height: 1.5; }
+
+        .actions { display: flex; gap: 20px; margin-top: 10px; border-top: 1px solid #f8fafc; padding-top: 10px; }
+        .action-btn { cursor: pointer; color: #94a3b8; font-size: 14px; font-weight: 600; }
+        .action-btn.liked { color: #4f46e5; }
+        .action-btn.disliked { color: #f43f5e; }
+
+        .loader { display: none; text-align: center; padding: 20px; }
         .spinner {
-            border: 4px solid rgba(255,255,255,0.1);
-            border-left-color: var(--accent-color);
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--accent-color);
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 30px; height: 30px;
             animation: spin 1s linear infinite;
             display: inline-block;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        /* Reviews Feed */
-        .reviews-list { width: 100%; }
-        .review-card {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 20px;
-            transition: 0.3s;
-        }
-        .review-card:hover { background: rgba(255,255,255,0.05); }
-
-        .review-header { display: flex; justify-content: space-between; align-items: center; }
-        .user-name { font-weight: 700; color: var(--accent-color); font-size: 17px; }
-        .time-ago { font-size: 12px; color: #64748b; }
-        .review-text { margin: 12px 0; font-size: 15px; color: #cbd5e1; line-height: 1.6; }
-        
-        /* Actions */
-        .actions { display: flex; gap: 20px; margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; }
-        .action-btn { cursor: pointer; display: flex; align-items: center; gap: 8px; color: #94a3b8; transition: 0.2s; font-size: 14px; }
-        .action-btn.liked { color: #38bdf8; transform: scale(1.1); }
-        .action-btn.disliked { color: #f43f5e; transform: scale(1.1); }
-
-        .see-more-container { text-align: center; margin-top: 30px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
 
 <div class="rating-container">
-    <h2><i class="fa-solid fa-star-half-stroke"></i> Customer Feedback</h2>
+    <h2>Verified User Reviews</h2>
 
     <div class="video-guide-section">
-        <span class="video-title"><i class="fa-solid fa-circle-play"></i> Watch: How to use VIP SMM Shop</span>
         <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/CgOeFyroHgU" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/CgOeFyroHgU" allowfullscreen></iframe>
         </div>
     </div>
     
@@ -187,18 +156,17 @@
     </div>
 
     <div id="feedback-box">
-        <input type="text" id="inp-name" placeholder="Apna Naam Likhein...">
-        <textarea id="inp-comment" rows="3" placeholder="Apna experience share karein (e.g. Recharge ya followers kaise mile?)..."></textarea>
-        <button class="btn-submit" onclick="handleUserRating()">SUBMIT RATING NOW</button>
+        <input type="text" id="inp-name" placeholder="Enter Your Name">
+        <textarea id="inp-comment" rows="3" placeholder="Share your experience..."></textarea>
+        <button class="btn-submit" onclick="handleUserRating()">SUBMIT RATING</button>
     </div>
 
     <div id="main-loader" class="loader">
         <div class="spinner"></div>
-        <p id="loader-msg" style="margin-top:15px; color:var(--accent-color);">Verifying your feedback...</p>
+        <p>Verifying...</p>
     </div>
 
-    <div class="reviews-list" id="reviews-feed">
-        </div>
+    <div id="reviews-feed"></div>
 
     <div class="see-more-container">
         <button class="btn-submit" style="width: auto; padding: 12px 50px;" id="btn-load-more" onclick="loadMoreReviews()">SEE MORE</button>
@@ -207,37 +175,39 @@
 </div>
 
 <script>
-    const rawNames = ["Aman", "Rohan", "Priya", "Sneha", "Vikram", "Rahul", "Suresh", "Anjali", "Deepak", "Manish", "Kavita", "Sahil", "Neha", "Aaryan", "Suhani", "Mohit", "Ishaan", "Pooja", "Arjun", "Vivek"];
-    const rawSurnames = ["Sharma", "Verma", "Meena", "Yadav", "Singh", "Gupta", "Rajput", "Kumar", "Choudhary", "Das"];
-    const rawComments = [
-        "Bhai mast service hai! Instagram followers instantly mil gaye. ❤️",
-        "Best SMM Panel. YouTube watchtime service non-drop hai.",
-        "Recharge process fast hai, ₹120 me Jio ka recharge mil gaya!",
-        "Amazon Prime subscription 5 min me mil gaya. Working fine!",
-        "Trustworthy site. Support team bahut badhiya hai.",
-        "Facebook likes liye the, result amazing hai. Sasta aur tez!",
-        "VIP SMM is genuine. Abhi YouTube monetization pack order kiya h.",
-        "Discord nitro aur gaming services sab mast kaam kar rahi hain.",
-        "Itni sasti service kahin nahi dekhi. ₹499 me monetization!",
-        "Great experience! Link dala aur verify kiya, turant kaam ho gaya.",
-        "Vipsmm shop is king. Mere 500k followers wale dost ne suggest kiya tha.",
-        "Link verify karke payment kiya, recharge turant ho gaya.",
-        "Netflix aur Prime ke deals insane hain yahan.",
-        "Everything is perfect. QR code se payment karna easy hai."
+    // UNIQUE NAME & COMMENT GENERATOR (Anti-Repeat)
+    const names = ["Rahul", "Priya", "Amit", "Sneha", "Vikram", "Anjali", "Suresh", "Neha", "Mohit", "Pooja", "Arjun", "Karan", "Suhani"];
+    const surnames = ["Sharma", "Verma", "Singh", "Yadav", "Gupta", "Rajput", "Meena", "Kumar"];
+    
+    // MIXED CONTENT DATABASE
+    const comments = [
+        "Bhai gazab service hai! maza aa gaya. kahkwkajs fast delivery.",
+        "Everything is working perfectly. Best panel for Instagram followers.",
+        "Maine Amazon Prime liya tha, instantly mil gaya. Thank you VIP SMM!",
+        "YouTube watchtime badhiya hai, non-drop service hai. Very professional.",
+        "Sasta aur sabse tez. Recharge turant ho gaya. Hello everyone try this.",
+        "Insta followers instantly mil gaye. mast h yaar! hahahaha",
+        "Very fast service. Payment verify hote hi order start ho gaya. Very Professional.",
+        "₹120 me Jio recharge? unbelievable deal. VIP SMM is king.",
+        "Main pehle dar raha tha par ye real hai. Guys go for it! hshsjaks",
+        "Pura line professional: Exceptional quality and timely delivery of social services.",
+        "Bhai sachi me followers milte h, maine khud try kiya h.",
+        "Quick response from support. Premium deals are actually working.",
+        "Maza aa gaya! Itni sasti monetization pack kahin nahi dekhi.",
+        "Link verify hote hi kaam shuru. hi, mast panel hai ye."
     ];
-    const rawTimes = ["2 hours ago", "5 hours ago", "1 day ago", "3 days ago", "1 week ago", "2 weeks ago", "1 month ago", "3 months ago", "8 months ago", "1 year ago"];
+
+    const times = ["2 hours ago", "5 hours ago", "1 day ago", "3 days ago", "1 week ago", "1 month ago", "8 months ago", "1 year ago"];
 
     let usedReviewKeys = new Set();
 
     function generateUniqueReview() {
         let name, comment, time, key;
         do {
-            const fName = rawNames[Math.floor(Math.random() * rawNames.length)];
-            const lName = rawSurnames[Math.floor(Math.random() * rawSurnames.length)];
-            name = fName + " " + lName;
-            comment = rawComments[Math.floor(Math.random() * rawComments.length)];
-            time = rawTimes[Math.floor(Math.random() * rawTimes.length)];
-            key = name + comment;
+            name = names[Math.floor(Math.random() * names.length)] + " " + surnames[Math.floor(Math.random() * surnames.length)];
+            comment = comments[Math.floor(Math.random() * comments.length)];
+            time = times[Math.floor(Math.random() * times.length)];
+            key = name + comment; 
         } while (usedReviewKeys.has(key) && usedReviewKeys.size < 500);
 
         usedReviewKeys.add(key);
@@ -251,29 +221,23 @@
         };
     }
 
+    // FORM & STAR LOGIC
     const starIcons = document.querySelectorAll('.star-input i');
     starIcons.forEach(star => {
         star.addEventListener('click', () => {
             const val = star.getAttribute('data-val');
-            starIcons.forEach((s, index) => {
-                s.classList.toggle('active', index < val);
-            });
+            starIcons.forEach((s, idx) => s.classList.toggle('active', idx < val));
             document.getElementById('feedback-box').style.display = 'block';
         });
     });
 
     function handleUserRating() {
-        const uName = document.getElementById('inp-name').value;
-        if(!uName) return alert("Please enter your name!");
+        const name = document.getElementById('inp-name').value;
+        if(!name) return alert("Enter name!");
         document.getElementById('feedback-box').style.display = 'none';
         document.getElementById('main-loader').style.display = 'block';
-
         setTimeout(() => {
-            document.getElementById('main-loader').innerHTML = `
-                <div style="color:var(--accent-color);">
-                    <i class="fa-solid fa-circle-check" style="font-size:40px;"></i>
-                    <h3 style="margin-top:15px;">Thanks for rating, ${uName}!</h3>
-                </div>`;
+            document.getElementById('main-loader').innerHTML = `<h3>✅ Thanks, ${name}!</h3>`;
             setTimeout(() => { location.reload(); }, 2000);
         }, 2500);
     }
@@ -285,21 +249,14 @@
             const card = document.createElement('div');
             card.className = 'review-card';
             card.innerHTML = `
-                <div class="review-header">
-                    <span class="user-name">${r.name}</span>
-                    <span class="time-ago">${r.time}</span>
-                </div>
-                <div style="color: var(--star-color); font-size:12px; margin: 8px 0;">
+                <div><span class="user-name">${r.name}</span><span class="time-ago">${r.time}</span></div>
+                <div style="color:var(--star-color); font-size:10px; margin:5px 0;">
                     <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                 </div>
                 <p class="review-text">${r.text}</p>
                 <div class="actions">
-                    <div class="action-btn" onclick="toggleAction(this, ${r.likes}, 'like')">
-                        <i class="fa-solid fa-thumbs-up"></i> <span class="count">${r.likes}</span>
-                    </div>
-                    <div class="action-btn" onclick="toggleAction(this, ${r.dislikes}, 'dislike')">
-                        <i class="fa-solid fa-thumbs-down"></i> <span class="count">${r.dislikes}</span>
-                    </div>
+                    <span class="action-btn" onclick="toggleLike(this, ${r.likes})"><i class="fa-solid fa-thumbs-up"></i> <span>${r.likes}</span></span>
+                    <span class="action-btn" onclick="toggleDislike(this, ${r.dislikes})"><i class="fa-solid fa-thumbs-down"></i> <span>${r.dislikes}</span></span>
                 </div>
             `;
             feed.appendChild(card);
@@ -316,10 +273,16 @@
         }, 1500);
     }
 
-    function toggleAction(btn, baseValue, type) {
-        if(btn.classList.contains('liked') || btn.classList.contains('disliked')) return;
-        btn.classList.add(type === 'like' ? 'liked' : 'disliked');
-        btn.querySelector('.count').innerText = baseValue + 1;
+    function toggleLike(btn, val) {
+        if(btn.classList.contains('liked')) return;
+        btn.classList.add('liked');
+        btn.querySelector('span').innerText = val + 1;
+    }
+
+    function toggleDislike(btn, val) {
+        if(btn.classList.contains('disliked')) return;
+        btn.classList.add('disliked');
+        btn.querySelector('span').innerText = val + 1;
     }
 
     window.onload = () => injectReviews(10);
