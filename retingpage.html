@@ -35,20 +35,22 @@
             padding: 30px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             margin-bottom: 50px;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #e2e8e0;
+            box-sizing: border-box;
         }
 
         h2 { text-align: center; margin-bottom: 25px; font-weight: 800; color: #0f172a; }
 
-        .overall-rating-badge {
-            text-align: center;
-            margin-bottom: 25px;
-            background: #f1f5f9;
-            padding: 10px;
-            border-radius: 15px;
+        /* Video Section with Header */
+        .video-guide-header {
+            font-size: 18px;
             font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .overall-rating-badge span { color: var(--star-color); font-size: 18px; }
 
         .video-guide-section {
             width: 100%;
@@ -69,6 +71,16 @@
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%; border: 0;
         }
+
+        .overall-rating-badge {
+            text-align: center;
+            margin-bottom: 25px;
+            background: #f1f5f9;
+            padding: 12px;
+            border-radius: 15px;
+            font-weight: 700;
+        }
+        .overall-rating-badge span { color: var(--star-color); font-size: 18px; }
 
         .star-input {
             display: flex;
@@ -98,6 +110,7 @@
             border-radius: 12px;
             color: var(--text-main);
             box-sizing: border-box;
+            font-family: inherit;
         }
 
         .btn-submit {
@@ -110,6 +123,7 @@
             font-weight: 700;
             cursor: pointer;
             box-shadow: 0 4px 0px #3730A3;
+            transition: 0.2s;
         }
         .btn-submit:active { transform: translateY(2px); box-shadow: 0 2px 0px #3730A3; }
 
@@ -128,7 +142,6 @@
         .actions { display: flex; gap: 20px; margin-top: 10px; border-top: 1px solid #f8fafc; padding-top: 10px; }
         .action-btn { cursor: pointer; color: #94a3b8; font-size: 14px; font-weight: 600; }
         .action-btn.liked { color: #4f46e5; }
-        .action-btn.disliked { color: #f43f5e; }
 
         .loader { display: none; text-align: center; padding: 20px; }
         .spinner {
@@ -146,7 +159,11 @@
 <body>
 
 <div class="rating-container">
-    <h2>Verified User Reviews</h2>
+    <h2>Customer Feedback</h2>
+
+    <div class="video-guide-header">
+        <i class="fa-solid fa-circle-play"></i> Watch Tutorial
+    </div>
 
     <div class="video-guide-section">
         <div class="video-container">
@@ -174,7 +191,7 @@
 
     <div id="main-loader" class="loader">
         <div class="spinner"></div>
-        <p>Verifying...</p>
+        <p>Verifying your review...</p>
     </div>
 
     <div id="reviews-feed"></div>
@@ -186,98 +203,99 @@
 </div>
 
 <script>
-    const names = ["Rahul", "Priya", "Amit", "Sneha", "Vikram", "Anjali", "Suresh", "Neha", "Mohit", "Pooja", "Arjun", "Karan", "Suhani", "Rohan", "Deepak"];
-    const surnames = ["Sharma", "Verma", "Singh", "Yadav", "Gupta", "Rajput", "Meena", "Kumar", "Choudhary"];
+    const firstNames = ["Aman", "Rohan", "Suresh", "Priya", "Sneha", "Vikram", "Anjali", "Deepak", "Manish", "Sahil", "Neha", "Aaryan", "Suhani", "Mohit", "Ishaan", "Pooja", "Arjun", "Vivek", "Karan", "Kavita"];
+    const lastNames = ["Sharma", "Verma", "Singh", "Yadav", "Gupta", "Rajput", "Meena", "Kumar", "Choudhary", "Das", "Patel", "Mishra"];
     
-    const comments = [
-        "Bhai gazab service hai! maza aa gaya. kahkwkajs fast delivery.",
-        "Everything is working perfectly. Best panel for Instagram followers.",
-        "Maine Amazon Prime liya tha, instantly mil gaya. Thank you VIP SMM!",
-        "YouTube watchtime badhiya hai, non-drop service hai. Very professional.",
-        "Sasta aur sabse tez. Recharge turant ho gaya. Hello everyone try this.",
-        "Insta followers instantly mil gaye. mast h yaar! hahahaha",
-        "Very fast service. Payment verify hote hi order start ho gaya. Very Professional.",
-        "₹120 me Jio recharge? unbelievable deal. VIP SMM is king.",
-        "Main pehle dar raha tha par ye real hai. Guys go for it! hshsjaks",
-        "Pura line professional: Exceptional quality and timely delivery of social services.",
-        "Bhai sachi me followers milte h, maine khud try kiya h.",
-        "Quick response from support. Premium deals are actually working.",
-        "Maza aa gaya! Itni sasti monetization pack kahin nahi dekhi.",
-        "Link verify hote hi kaam shuru. hi, mast panel hai ye.",
-        "Some delay but eventually service was delivered. Good experience.",
-        "kahkwkajs mast kaam hai bhai, saste me best!"
+    const commentsPool = [
+        "Bhai mast service hai! Instagram followers instantly mil gaye.",
+        "Best SMM Panel. YouTube watchtime service non-drop hai, worth it.",
+        "Recharge process fast hai, ₹120 me Jio ka recharge mil gaya!",
+        "Amazon Prime subscription 5 min me mil gaya. Working fine.",
+        "Trustworthy site. Support team is very helpful and quick.",
+        "Facebook likes liye the, result amazing hai. Sasta aur tez!",
+        "VIP SMM is genuine. Abhi YouTube monetization pack order kiya h.",
+        "Discord nitro aur gaming services sab mast kaam kar rahi hain.",
+        "Link verify karke payment kiya, recharge turant ho gaya.",
+        "Everything is perfect. QR code se payment karna bahut easy hai.",
+        "Professional quality and timely delivery of social services. Loved it.",
+        "Great experience! Link dala aur verify kiya, turant kaam ho gaya.",
+        "Netflix aur Prime ke deals insane hain yahan. Best price.",
+        "Bhai sachi me followers milte h, maine khud check kiya h.",
+        "Sabse sasti service yahan hi milti hai. 100% recommended.",
+        "Insta likes aur comments 2 minute me aane shuru ho gaye.",
+        "Excellent support and very cheap rates. Best for resellers.",
+        "Panel interface is very smooth. Easy to place orders.",
+        "Working fine for me. Daily recharge yahan se hi karta hoon.",
+        "Real and active followers mile hain. No drop so far."
     ];
 
-    const times = ["2 hours ago", "5 hours ago", "1 day ago", "3 days ago", "1 week ago", "1 month ago", "8 months ago"];
-    let usedReviewKeys = new Set();
+    const timesPool = ["2 hours ago", "5 hours ago", "1 day ago", "3 days ago", "1 week ago", "2 weeks ago", "1 month ago"];
+    let usedCombinations = new Set();
 
-    function generateStars() {
-        const rand = Math.random() * 100;
-        let starCount = 5;
-        if (rand < 70) starCount = 5;      // 70% chance of 5 stars
-        else if (rand < 90) starCount = 4; // 20% chance of 4 stars
-        else starCount = 3;                // 10% chance of 3 stars
+    function getStars() {
+        const r = Math.random() * 100;
+        let count = 5;
+        if (r < 70) count = 5;
+        else if (r < 90) count = 4;
+        else count = 3;
 
-        let starsHTML = '';
+        let html = '';
         for (let i = 1; i <= 5; i++) {
-            if (i <= starCount) {
-                starsHTML += '<i class="fa-solid fa-star"></i>';
-            } else {
-                starsHTML += '<i class="fa-regular fa-star" style="color:#e2e8f0"></i>';
-            }
+            html += i <= count ? '<i class="fa-solid fa-star"></i>' : '<i class="fa-regular fa-star" style="color:#cbd5e1"></i>';
         }
-        return starsHTML;
+        return html;
     }
 
     function generateUniqueReview() {
-        let name, comment, time, key;
+        let name, text, time, key;
         do {
-            name = names[Math.floor(Math.random() * names.length)] + " " + surnames[Math.floor(Math.random() * surnames.length)];
-            comment = comments[Math.floor(Math.random() * comments.length)];
-            time = times[Math.floor(Math.random() * times.length)];
-            key = name + comment; 
-        } while (usedReviewKeys.has(key) && usedReviewKeys.size < 500);
+            name = firstNames[Math.floor(Math.random() * firstNames.length)] + " " + lastNames[Math.floor(Math.random() * lastNames.length)];
+            text = commentsPool[Math.floor(Math.random() * commentsPool.length)];
+            time = timesPool[Math.floor(Math.random() * timesPool.length)];
+            key = name + text;
+        } while (usedCombinations.has(key) && usedCombinations.size < 200);
 
-        usedReviewKeys.add(key);
-        return { name, time, text: comment, stars: generateStars(), likes: Math.floor(Math.random() * 5000) + 50, dislikes: Math.floor(Math.random() * 15) };
+        usedCombinations.add(key);
+        return { name, time, text, stars: getStars(), likes: Math.floor(Math.random() * 2000) + 50 };
     }
 
-    const starIcons = document.querySelectorAll('.star-input i');
-    starIcons.forEach(star => {
-        star.addEventListener('click', () => {
-            const val = star.getAttribute('data-val');
-            starIcons.forEach((s, idx) => s.classList.toggle('active', idx < val));
+    const stars = document.querySelectorAll('.star-input i');
+    stars.forEach(s => {
+        s.addEventListener('click', () => {
+            const v = s.getAttribute('data-val');
+            stars.forEach((st, i) => st.classList.toggle('active', i < v));
             document.getElementById('feedback-box').style.display = 'block';
         });
     });
 
     function handleUserRating() {
-        const name = document.getElementById('inp-name').value;
-        if(!name) return alert("Enter name!");
+        const n = document.getElementById('inp-name').value;
+        if(!n) return alert("Enter your name!");
         document.getElementById('feedback-box').style.display = 'none';
         document.getElementById('main-loader').style.display = 'block';
         setTimeout(() => {
-            document.getElementById('main-loader').innerHTML = `<h3>✅ Thanks, ${name}!</h3>`;
-            setTimeout(() => { location.reload(); }, 2000);
-        }, 2500);
+            document.getElementById('main-loader').innerHTML = `<h3>✅ Thanks for rating, ${n}!</h3>`;
+            setTimeout(() => location.reload(), 2000);
+        }, 2000);
     }
 
-    function injectReviews(count) {
-        const feed = document.getElementById('reviews-feed');
-        for(let i=0; i<count; i++) {
+    function injectReviews(n) {
+        const f = document.getElementById('reviews-feed');
+        for(let i=0; i<n; i++) {
             const r = generateUniqueReview();
-            const card = document.createElement('div');
-            card.className = 'review-card';
-            card.innerHTML = `
+            const div = document.createElement('div');
+            div.className = 'review-card';
+            div.innerHTML = `
                 <div><span class="user-name">${r.name}</span><span class="time-ago">${r.time}</span></div>
                 <div style="color:var(--star-color); font-size:10px; margin:5px 0;">${r.stars}</div>
                 <p class="review-text">${r.text}</p>
                 <div class="actions">
-                    <span class="action-btn" onclick="toggleLike(this, ${r.likes})"><i class="fa-solid fa-thumbs-up"></i> <span>${r.likes}</span></span>
-                    <span class="action-btn" onclick="toggleDislike(this, ${r.dislikes})"><i class="fa-solid fa-thumbs-down"></i> <span>${r.dislikes}</span></span>
+                    <span class="action-btn" onclick="this.classList.add('liked'); this.querySelector('span').innerText = ${r.likes}+1">
+                        <i class="fa-solid fa-thumbs-up"></i> <span>${r.likes}</span>
+                    </span>
                 </div>
             `;
-            feed.appendChild(card);
+            f.appendChild(div);
         }
     }
 
@@ -288,24 +306,11 @@
             document.getElementById('more-loader').style.display = 'none';
             document.getElementById('btn-load-more').style.display = 'inline-block';
             injectReviews(10);
-        }, 1500);
-    }
-
-    function toggleLike(btn, val) {
-        if(btn.classList.contains('liked')) return;
-        btn.classList.add('liked');
-        btn.querySelector('span').innerText = val + 1;
-    }
-
-    function toggleDislike(btn, val) {
-        if(btn.classList.contains('disliked')) return;
-        btn.classList.add('disliked');
-        btn.querySelector('span').innerText = val + 1;
+        }, 1200);
     }
 
     window.onload = () => injectReviews(10);
 </script>
 
 </body>
-                                                 </html>
-                                                 
+</html>
