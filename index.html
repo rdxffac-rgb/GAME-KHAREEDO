@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta name="google-site-verification" content="aHx2pnoUrtIA_TE67GcP7O6hQQNONlLeT1zc935DyW4" />
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VipSmm Premium | Next-Gen Panel</title>
@@ -65,12 +64,11 @@
         .yt-border { border-left: 6px solid #FF0000; }
         .insta-border { border-left: 6px solid #E1306C; }
 
-        /* Premium 3D Button */
         .premium-3d-button {
             background: linear-gradient(180deg, #6366F1 0%, #4F46E5 100%);
             color: white;
             padding: 10px 24px;
-            border-radius: 166px;
+            border-radius: 16px;
             font-weight: 700;
             box-shadow: 0 4px 0px #3730A3;
             cursor: pointer;
@@ -88,7 +86,6 @@
             box-shadow: 0 2px 0px #3730A3;
         }
 
-        /* --- LOADING SPINNER STYLE --- */
         .btn-loader {
             width: 18px;
             height: 18px;
@@ -111,7 +108,6 @@
             margin-right: 15px;
         }
 
-        /* Full Screen Alert Styling */
         #customAlert {
             display: none;
             position: fixed;
@@ -182,7 +178,7 @@
             <i class="fa-brands fa-whatsapp text-emerald-600 text-xl"></i>
             <span class="font-bold text-emerald-800 text-sm">24/7 Support</span>
         </div>
-        <div onclick="location.href='./retingpage.html'" style="cursor: pointer;" class="flex items-center justify-center space-x-2 bg-rose-50 border border-rose-100 p-4 rounded-[1.8rem] shadow-sm active:scale-95">
+        <div onclick="window.location.assign('retingpage.html')" style="cursor: pointer;" class="flex items-center justify-center space-x-2 bg-rose-50 border border-rose-100 p-4 rounded-[1.8rem] shadow-sm active:scale-95">
             <i class="fa-brands fa-youtube text-rose-600 text-xl"></i>
             <span class="font-bold text-rose-800 text-sm">Watch Tutorial</span>
         </div>
@@ -190,7 +186,6 @@
 
     <div class="px-5 mt-10 space-y-5">
         <h2 class="text-2xl font-extrabold text-gray-900 mb-6">Our Services</h2>
-
         <div class="premium-3d-card jio-border">
             <div class="flex items-center">
                 <div class="icon-container bg-[#005AFF] italic text-white font-black">Jio</div>
@@ -312,23 +307,18 @@
             window.location.href = `whatsapp://send?text=${message}`;
         }
 
-        // --- LOADING & REDIRECT LOGIC ---
         function handleRedirect(button, url) {
             const text = button.querySelector('.btn-text');
             const loader = button.querySelector('.btn-loader');
-
             text.style.display = 'none';
             loader.style.display = 'block';
             button.style.pointerEvents = 'none';
 
             setTimeout(() => {
-                const cleanUrl = url.replace('.html', '');
-                history.pushState(null, '', cleanUrl);
                 window.location.href = url;
             }, 2000);
         }
 
-        // --- FIX FOR BACK BUTTON (BUFFRING RESET) ---
         window.addEventListener('pageshow', function (event) {
             const buttons = document.querySelectorAll('.premium-3d-button');
             buttons.forEach(btn => {
@@ -341,15 +331,7 @@
                 }
             });
         });
-
-        // --- CLEAN URL LOGIC (Fixed to not break retingpage) ---
-        (function() {
-            const path = window.location.pathname;
-            if (path.endsWith('.html') && !path.includes('retingpage')) {
-                const cleanPath = path.slice(0, -5);
-                window.history.replaceState(null, '', cleanPath);
-            }
-        })();
     </script>
 </body>
-</html>
+                                                                 </html>
+    
