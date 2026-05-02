@@ -64,6 +64,8 @@
         .amazon-border { border-left: 6px solid #00A8E1; }
         .yt-border { border-left: 6px solid #FF0000; }
         .insta-border { border-left: 6px solid #E1306C; }
+        .ff-border { border-left: 6px solid #F97316; } /* Free Fire Orange */
+        .redeem-border { border-left: 6px solid #34A853; } /* Play Store Green */
 
         /* Premium 3D Button */
         .premium-3d-button {
@@ -256,6 +258,39 @@
                 <span class="btn-loader"></span>
             </button>
         </div>
+
+        <div class="premium-3d-card ff-border">
+            <div class="flex items-center">
+                <div class="icon-container bg-gradient-to-br from-orange-500 to-red-600 text-white">
+                    <i class="fa-solid fa-gamepad text-2xl"></i>
+                </div>
+                <div>
+                    <h3 class="font-extrabold">Free Fire Top-Up</h3>
+                    <p class="text-xs text-gray-500">Diamonds & Event Packs</p>
+                </div>
+            </div>
+            <button onclick="handleRedirect(this, 'freefire.html')" class="premium-3d-button">
+                <span class="btn-text">Top Up</span>
+                <span class="btn-loader"></span>
+            </button>
+        </div>
+
+        <div class="premium-3d-card redeem-border">
+            <div class="flex items-center">
+                <div class="icon-container bg-white border flex flex-wrap p-2 overflow-hidden">
+                    <i class="fa-brands fa-google-play text-2xl text-emerald-500"></i>
+                </div>
+                <div>
+                    <h3 class="font-extrabold">Play Store</h3>
+                    <p class="text-xs text-gray-500">Redeem Codes & Credits</p>
+                </div>
+            </div>
+            <button onclick="handleRedirect(this, 'redeemcode.html')" class="premium-3d-button">
+                <span class="btn-text">Redeem</span>
+                <span class="btn-loader"></span>
+            </button>
+        </div>
+
     </div>
 
     <div class="bg-[#0f172a] text-gray-400 mt-20 rounded-t-[3rem] px-6 py-12 shadow-inner">
@@ -351,4 +386,5 @@
         })();
     </script>
 </body>
-                </html>
+    </html>
+    
