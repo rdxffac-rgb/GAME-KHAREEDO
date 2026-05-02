@@ -4,6 +4,7 @@
     <loc>https://vipsmm.shop/</loc>
     <priority>1.0</priority>
   </url>
+
   <url>
     <loc>https://vipsmm.shop/jioplan.html</loc>
     <priority>0.8</priority>
@@ -12,6 +13,7 @@
     <loc>https://vipsmm.shop/airtelplan.html</loc>
     <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://vipsmm.shop/instagramplan.html</loc>
     <priority>0.8</priority>
@@ -20,6 +22,16 @@
     <loc>https://vipsmm.shop/youtubeplan.html</loc>
     <priority>0.8</priority>
   </url>
+
+  <url>
+    <loc>https://vipsmm.shop/freefire.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vipsmm.shop/redeemcode.html</loc>
+    <priority>0.8</priority>
+  </url>
+
   <url>
     <loc>https://vipsmm.shop/retingpage.html</loc>
     <priority>0.7</priority>
